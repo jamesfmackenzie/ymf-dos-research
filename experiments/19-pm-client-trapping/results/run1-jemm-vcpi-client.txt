@@ -1,0 +1,20 @@
+== ::/PV.TXT
+V86 before IN 02/04/ED/83: 00 00 FF 00 
+PM client:
+ CS.RPL=0000 SS.RPL=0000 EFLAGS=00003046
+ IN 02/04/ED/83: 00 00 FF 00
+ last stage completed=04 GP/PF err=00000000@0000:00000000 vec=00
+V86 after  IN 02/04/ED/83: 00 00 FF 00 
+QPI callback count=0000 last port=0000
+== ::/JL.TXT
+JLoad: 'QPIEMU.DLL' loaded successfully.
+== ::/PQ.TXT
+V86 before IN 02/04/ED/83: A5 00 FF 00 
+PM client:
+ CS.RPL=0000 SS.RPL=0000 EFLAGS=00003046
+ IN 02/04/ED/83: 00 00 FF 00
+ last stage completed=04 GP/PF err=00000000@0000:00000000 vec=00
+V86 after  IN 02/04/ED/83: A5 00 FF 00 
+QPI callback count=0002 last port=0002
+== ::/DONE.TXT
+DONE 

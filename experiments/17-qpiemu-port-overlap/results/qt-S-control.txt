@@ -1,0 +1,5 @@
+== ::/QS.TXT
+QPI entry 028F:0023
+QPI ver BX=0703
+old callback 0000:0000
+1A07 set callback  CF=00

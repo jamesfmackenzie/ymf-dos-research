@@ -1,0 +1,22 @@
+== ::/D0.TXT
+no DPMI host (1687)
+== ::/DS.TXT
+Legacy Audio Emulation Program V1.00
+== ::/PD.TXT
+DE00 failed AX=8400
+== ::/DP.TXT
+DPMI host: flags=0001 cpu=0005 ver=005A paras=0400 entry=1193:0000
+V86 IN 02/04/ED/83: FF 00 FF FF
+PM client:
+ CS.RPL=0003 CS=009F
+ IN 02/04/ED/83: FF 00 FF FF
+ QPI cb count=0000PM ran to completion
+== ::/DPQ.TXT
+DPMI host: flags=0001 cpu=0005 ver=005A paras=0400 entry=1193:0000
+V86 IN 02/04/ED/83: FF 00 FF FF
+PM client:
+ CS.RPL=0003 CS=009F
+ IN 02/04/ED/83: FF 00 FF FF
+ QPI cb count=0000PM ran to completion
+== ::/DONE.TXT
+DONE 

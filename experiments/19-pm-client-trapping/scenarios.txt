@@ -1,0 +1,4 @@
+autoexec/AUTOEXEC.run1-jemm-vcpi-client.BAT results/run1-jemm-vcpi-client.txt 60
+autoexec/AUTOEXEC.run2-dsdma.BAT            results/run2-dsdma.txt            90
+autoexec/AUTOEXEC.run3-hdpmi.BAT            results/run3-hdpmi.txt            60
+autoexec/AUTOEXEC.run4-hdpmi16i-clean.BAT   results/run4-hdpmi16i-clean.txt   60

@@ -1,0 +1,56 @@
+== ::/JL.TXT
+JLoad: 'QPIEMU.DLL' loaded successfully.
+== ::/QI.TXT
+QC installed
+== ::/DS.TXT
+Legacy Audio Emulation Program V1.00
+== ::/V86.TXT
+T1 ch00 A/C=1234 00FF
+T1 ch01 A/C=FFFF FFFF
+T1 ch02 A/C=1434 0001
+T1 ch03 A/C=1534 0002
+T2 page 83/81/82/87/89/8A/8B: 83=FF 81=5A 82=5A 87=5A 89=5A 8A=5A 8B=5A 
+T3 status08/temp0D/0F: 26 FF 0F
+T4 ch5 addr C4 (7856 expected): 5678
+T5 rep outsb 34 12 then rep insb: FFFF
+== ::/QV.TXT
+QC count=0000
+
+== ::/B4G.TXT
+Error initializing mouse: 2
+Loading with LINEXE_LOADER
+Executing XT4G.EXE with initial registers:
+TSF32: prev_tsf32    0
+SS       237 DS       237 ES        AF FS         0 GS        BF
+EAX        0 EBX        0 ECX        0 EDX        0
+ESI      22F EDI        0 EBP        0 ESP 4011B5F0
+CS:IP  22F:401055E0 ID 00 COD     58A4 FLG      200
+CS=  22F, USE32, page granular, limit FFFFFFFF, base        0, acc CFFA
+DS=  237, USE32, page granular, limit FFFFFFFF, base        0, acc CFF2
+ES=   AF, USE32, byte granular, limit       FF, base    12340, acc 40F2
+SS=  237, USE32, page granular, limit FFFFFFFF, base        0, acc CFF2
+B: CS=022F CPL=3 IOPL=0 ch1addr_rb=FFFF st=22/22 pg83=FF
+DOS/4GW deinitializing
+... deinitializing LINEXE_LOADER
+... deinitializing D32_INT31
+... deinitializing int31 package
+== ::/XT.TXT
+B: CS=022F CPL=3 IOPL=0 EFL=00000212 ch1addr_rb=FFFF st=22/22 pg83=FF
+B: CS=00CF CPL=3 IOPL=0 EFL=00000212 ch1addr_rb=FFFF st=22/22 pg83=FF
+B: CS=00D7 CPL=3 IOPL=0 EFL=00000212 ch1addr_rb=FFFF st=22/22 pg83=FF
+== ::/QB4.TXT
+QC count=0000
+
+== ::/BPW.TXT
+B: CS=00CF CPL=3 IOPL=0 ch1addr_rb=FFFF st=22/22 pg83=FF
+== ::/QBP.TXT
+QC count=0000
+
+== ::/B32.TXT
+DOS/32A warning (9004): mouse initialization failed
+B: CS=00D7 CPL=3 IOPL=0 ch1addr_rb=FFFF st=22/22 pg83=FF
+== ::/QB3.TXT
+QC count=0000
+
+== ::/DONE.TXT
+DONE 

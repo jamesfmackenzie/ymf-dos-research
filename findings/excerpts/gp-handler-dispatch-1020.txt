@@ -1,0 +1,33 @@
+; #GP handler: decode, then dispatch via the table at 0x744E (finding 15)
+; Source: Dsdma.exe, ndisasm -b 16, IP-basis addresses (see docs/reproducing.md). Short excerpt for commentary.
+00001020  55                push bp
+00001021  8BEC              mov bp,sp
+00001023  0FA0              push fs
+00001025  FF7606            push word [bp+0x6]
+00001028  E81F0D            call 0x1d4a
+0000102B  83C402            add sp,0x2
+0000102E  668BC8            mov ecx,eax
+00001031  FF7606            push word [bp+0x6]
+00001034  6652              push edx
+00001036  6650              push eax
+00001038  E82B06            call 0x1666
+0000103B  83C40A            add sp,0xa
+0000103E  662BC8            sub ecx,eax
+00001041  66F7D9            neg ecx
+00001044  67640FB618        movzx bx,byte [fs:eax]
+00001049  03DB              add bx,bx
+0000104B  FF7606            push word [bp+0x6]
+0000104E  6652              push edx
+00001050  6651              push ecx
+00001052  6650              push eax
+00001054  FF974E74          call word near [bx+0x744e]
+00001058  6683C40E          add esp,0xe
+0000105C  0FA1              pop fs
+0000105E  C9                leave
+0000105F  C3                ret
+00001060  55                push bp
+00001061  8BEC              mov bp,sp
+00001063  B80000            mov ax,0x0
+00001066  C9                leave
+00001067  C3                ret
+00001068  6656              push esi

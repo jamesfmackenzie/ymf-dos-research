@@ -1,0 +1,4 @@
+autoexec/AUTOEXEC.A-vcpi-nodsdma.BAT          results/runA.txt 90
+autoexec/AUTOEXEC.B-qpi-then-dsdma.BAT        results/runB.txt 90
+autoexec/AUTOEXEC.C-dsdma-then-qpi.BAT        results/runC.txt 90
+autoexec/AUTOEXEC.D-dsdma-then-qpi-nov86.BAT  results/runD.txt 90

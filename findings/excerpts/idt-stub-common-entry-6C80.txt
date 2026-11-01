@@ -1,0 +1,19 @@
+; Common entry reached from the per-vector IDT stubs (finding 15)
+; Source: Dsdma.exe, ndisasm -b 16, IP-basis addresses (see docs/reproducing.md). Short excerpt for commentary.
+00006C80  6683EC06          sub esp,0x6
+00006C84  6660              pushad
+00006C86  668BEC            mov ebp,esp
+00006C89  660FA8            o32 push gs
+00006C8C  660FA0            o32 push fs
+00006C8F  661E              o32 push ds
+00006C91  6606              o32 push es
+00006C93  2E8E1E8678        mov ds,word [cs:0x7886]
+00006C98  8E068878          mov es,word [0x7888]
+00006C9C  8E268878          mov fs,word [0x7888]
+00006CA0  8E2E8678          mov gs,word [0x7886]
+00006CA4  668B1EAA78        mov ebx,[0x78aa]
+00006CA9  8CD1              mov cx,ss
+00006CAB  6633D2            xor edx,edx
+00006CAE  8BD1              mov dx,cx
+00006CB0  660F02D2          lar edx,dx
+00006CB4  66F7C200004000    test edx,0x400000

@@ -1,0 +1,16 @@
+#GP opcode dispatch table @ IP 0x744E (word per opcode byte), entries != default stub 0x1060
+op 0F -> 109A
+op 6C -> 1148
+op 6D -> 11C0
+op 6E -> 124B
+op 6F -> 12C1
+op E4 -> 13B3
+op E5 -> 134A
+op E6 -> 1463
+op E7 -> 13FA
+op EC -> 150B
+op ED -> 14AA
+op EE -> 15AB
+op EF -> 154A
+op FA -> 1619
+op FB -> 15EA

@@ -1,0 +1,5 @@
+autoexec/AUTOEXEC.battery.BAT results/qt-battery-per-port.txt 90 norm:regs
+autoexec/AUTOEXEC.partA.BAT   results/qt-A-special-tests.txt  60 norm:regs
+autoexec/AUTOEXEC.partB.BAT   results/qt-B-timing.txt         60 norm:ticks
+autoexec/AUTOEXEC.partR.BAT   results/qt-R-rep-outsd-hang.txt 60
+autoexec/AUTOEXEC.partS.BAT   results/qt-S-control.txt        60

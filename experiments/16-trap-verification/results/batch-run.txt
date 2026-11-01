@@ -1,0 +1,56 @@
+== ::/T0.TXT
+T1 ch00 A/C=1234 00FF
+T1 ch01 A/C=1334 0000
+T1 ch02 A/C=1434 0001
+T1 ch03 A/C=1534 0002
+T2 page 83/81/82/87/89/8A/8B: 83=5A 81=5A 82=5A 87=5A 89=5A 8A=5A 8B=5A 
+T3 status08/temp0D/0F: 04 FF 0F
+T4 ch5 addr C4 (7856 expected): 5678
+T5 rep outsb 34 12 then rep insb: 3412
+== ::/VCPI.TXT
+VCPI version: 1.0
+Offset of VCPI entry in protected-mode: 00110698
+Start free address space: 00111000
+1. VCPI descriptor: 00000000:ffff,cf9a
+2. VCPI descriptor: 00000000:ffff,cf92
+3. VCPI descriptor: 00000000:0000,0000
+highest physical memory address: 01fff000
+Free 4K pages: 7860 ( 31440 kB)
+CR0: 80000011
+DR0-DR3: 00000000 00000000 00000000 00000000
+DR6+DR7: ffff0ff0 00000400
+Master/Slave PIC base: 8/70
+Protected Mode Switch ok
+== ::/F0.TXT
+FAKEPCI installed (1073:000D @ 0:0B:0)
+== ::/T1.TXT
+T1 ch00 A/C=1234 00FF
+T1 ch01 A/C=1334 0000
+T1 ch02 A/C=1434 0001
+T1 ch03 A/C=1534 0002
+T2 page 83/81/82/87/89/8A/8B: 83=5A 81=5A 82=5A 87=5A 89=5A 8A=5A 8B=5A 
+T3 status08/temp0D/0F: 00 FF 0F
+T4 ch5 addr C4 (7856 expected): 5678
+T5 rep outsb 34 12 then rep insb: 3412
+== ::/DSDMA.TXT
+Legacy Audio Emulation Program V1.00
+== ::/RC.TXT
+RC=0 
+== ::/T2.TXT
+T1 ch00 A/C=1234 00FF
+T1 ch01 A/C=FFFF FFFF
+T1 ch02 A/C=1434 0001
+T1 ch03 A/C=1534 0002
+T2 page 83/81/82/87/89/8A/8B: 83=FF 81=5A 82=5A 87=5A 89=5A 8A=5A 8B=5A 
+T3 status08/temp0D/0F: 22 FF 0F
+T4 ch5 addr C4 (7856 expected): 5678
+T5 rep outsb 34 12 then rep insb: FFFF
+== ::/PCI.TXT
+38:00 00 00 00 05 01 00 00 
+40:7F 90 00 10 00 00 00 00 
+48:00 00 00 00 91 F3 00 00 
+write log entries: 02
+W size=2 42=1000
+W size=2 4C=F391
+== ::/DONE.TXT
+DONE 

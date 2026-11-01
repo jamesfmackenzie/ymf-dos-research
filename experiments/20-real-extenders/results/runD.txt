@@ -1,0 +1,44 @@
+== ::/DS.TXT
+Legacy Audio Emulation Program V1.00
+== ::/JL.TXT
+JLoad: 'QPIEMU.DLL' loaded successfully.
+== ::/QI.TXT
+QC installed
+== ::/C4G.TXT
+Error initializing mouse: 2
+Loading with LINEXE_LOADER
+Executing XT4G.EXE with initial registers:
+TSF32: prev_tsf32    0
+SS       237 DS       237 ES        AF FS         0 GS        BF
+EAX        0 EBX        0 ECX        0 EDX        0
+ESI      22F EDI        0 EBP        0 ESP 4011B5F0
+CS:IP  22F:401055E0 ID 00 COD     58A4 FLG      200
+CS=  22F, USE32, page granular, limit FFFFFFFF, base        0, acc CFFA
+DS=  237, USE32, page granular, limit FFFFFFFF, base        0, acc CFF2
+ES=   AF, USE32, byte granular, limit       FF, base    12340, acc 40F2
+SS=  237, USE32, page granular, limit FFFFFFFF, base        0, acc CFF2
+C: CS=022F CPL=3 IOPL=0 ch1addr_rb=FFFF st=26/22 pg83=FF
+DOS/4GW deinitializing
+... deinitializing LINEXE_LOADER
+... deinitializing D32_INT31
+... deinitializing int31 package
+== ::/XT.TXT
+C: CS=022F CPL=3 IOPL=0 EFL=00000212 ch1addr_rb=FFFF st=26/22 pg83=FF
+C: CS=00CF CPL=3 IOPL=0 EFL=00000212 ch1addr_rb=FFFF st=22/22 pg83=FF
+C: CS=00D7 CPL=3 IOPL=0 EFL=00000212 ch1addr_rb=FFFF st=22/22 pg83=FF
+== ::/QC4.TXT
+QC count=0000
+
+== ::/CPW.TXT
+C: CS=00CF CPL=3 IOPL=0 ch1addr_rb=FFFF st=22/22 pg83=FF
+== ::/QCP.TXT
+QC count=0000
+
+== ::/C32.TXT
+DOS/32A warning (9004): mouse initialization failed
+C: CS=00D7 CPL=3 IOPL=0 ch1addr_rb=FFFF st=22/22 pg83=FF
+== ::/QC3.TXT
+QC count=0000
+
+== ::/DONE.TXT
+DONE 

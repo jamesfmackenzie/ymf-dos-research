@@ -1,0 +1,53 @@
+send bpint 2f be ef
+raw 1b5b31357e
+wait 6
+raw 1b5b31357e
+wait 100
+send dv f7c01020
+snap code1020
+send dv f7c09100
+snap s0-0
+send dv f7c09170
+snap s0-1
+send dv f7c091e0
+snap s0-2
+send dv f7c09250
+snap s0-3
+send dv f7c092c0
+snap s0-4
+raw 1b5b31357e
+wait 90
+send dv f7c09100
+snap s1-0
+send dv f7c09170
+snap s1-1
+send dv f7c091e0
+snap s1-2
+send dv f7c09250
+snap s1-3
+send dv f7c092c0
+snap s1-4
+raw 1b5b31357e
+wait 70
+send dv f7c09100
+snap s2-0
+send dv f7c09170
+snap s2-1
+send dv f7c091e0
+snap s2-2
+send dv f7c09250
+snap s2-3
+send dv f7c092c0
+snap s2-4
+raw 1b5b31357e
+wait 70
+send dv f7c09100
+snap s3-0
+send dv f7c09170
+snap s3-1
+send dv f7c091e0
+snap s3-2
+send dv f7c09250
+snap s3-3
+send dv f7c092c0
+snap s3-4

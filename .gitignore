@@ -1,0 +1,16 @@
+# Ghidra project artifacts
+*.gpr
+*.rep/
+ghidra_projects/
+
+# DOSBox-X generated state
+*.conf.bak
+capture/
+
+# OS cruft
+.DS_Store
+.venv-ghidra/
+
+# Third-party and generated material (never commit)
+samples/ymf744/extracted/
+samples/ymf744/package.zip

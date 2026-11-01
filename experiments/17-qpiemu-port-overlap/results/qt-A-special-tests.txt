@@ -1,0 +1,73 @@
+== ::/QA.TXT
+QPI entry 028F:0023
+QPI ver BX=0703
+old callback 0000:0000
+1A07 set callback  CF=00
+1A09 trap port 02 CF=00
+1A09 trap port 03 CF=00
+1A09 trap port 83 CF=00
+1A09 trap port 0A CF=00
+1A09 trap port 0B CF=00
+1A09 trap port 0C CF=00
+1A09 trap port 0F CF=00
+1A09 trap port C4 CF=00
+1A09 trap port 08 CF=00
+1A09 trap port 09 CF=00
+1A09 trap port C0 CF=00
+1A09 trap port D0 CF=00
+1A09 again on port 02 (already ours)  CF=01
+== S1 mask/mode writes (ch2 pre-emption?)
+  OUT 0B,55 (ch1 mode) n=0001 eax=A5A53255 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=000B eax=A5A53255 ecx=00010204 ebx=F8400703 esi=F8400862 edi=F840073F
+  OUT 0B,56 (ch2 mode) n=0000 eax=A5A53256 ecx=000100FF si=0862 di=073F
+  OUT 0B,54 (ch0 mode) n=0001 eax=A5A53254 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=000B eax=A5A53254 ecx=00010204 ebx=F8400703 esi=F8400862 edi=F840073F
+  OUT 0A,01 unmask ch1 n=0001 eax=A5A53201 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=000A eax=A5A53201 ecx=00010204 ebx=F8400703 esi=F8400862 edi=F840073F
+  OUT 0A,02 unmask ch2 n=0000 eax=A5A53202 ecx=000100FF si=0862 di=073F
+  OUT 0A,06 mask ch2 n=0000 eax=A5A53206 ecx=000100FF si=0862 di=073F
+  OUT 0A,00 unmask ch0 n=0001 eax=A5A53200 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=000A eax=A5A53200 ecx=00010204 ebx=F8400703 esi=F8400862 edi=F840073F
+  OUT 0A,04 mask ch0 n=0001 eax=A5A53204 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=000A eax=A5A53204 ecx=00010204 ebx=F8400703 esi=F8400862 edi=F840073F
+  OUT 0A,05 mask ch1 n=0001 eax=A5A53205 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=000A eax=A5A53205 ecx=00010204 ebx=F8400703 esi=F8400862 edi=F840073F
+  OUT 0A,07 mask ch3 n=0001 eax=A5A53207 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=000A eax=A5A53207 ecx=00010204 ebx=F8400703 esi=F8400862 edi=F840073F
+  OUT 0F,0F mask all n=0001 eax=A5A5320F ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=000F eax=A5A5320F ecx=00010204 ebx=F8400703 esi=F8400862 edi=F840073F
+S2 passthrough ch1 program+readback n=000C eax=A5A5325A ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=000C eax=A5A5320F ecx=00010204 ebx=F8400703 esi=F8400862 edi=F840073F
+    cb cx=0204 dx=0002 eax=A5A53234 ecx=00010204 ebx=F8400703 esi=F8400862 edi=F840073F
+    cb cx=0204 dx=0002 eax=A5A53212 ecx=00010204 ebx=F8400703 esi=F8400862 edi=F840073F
+    cb cx=0204 dx=0003 eax=A5A532FF ecx=00010204 ebx=F8400703 esi=F8400862 edi=F840073F
+    cb cx=0204 dx=0003 eax=A5A53200 ecx=00010204 ebx=F8400703 esi=F8400862 edi=F840073F
+    cb cx=0204 dx=0083 eax=A5A5325A ecx=00010204 ebx=F8400703 esi=F8400862 edi=F840073F
+    cb cx=0204 dx=000C eax=A5A5325A ecx=00010204 ebx=F8400703 esi=F8400862 edi=F840073F
+    cb cx=0200 dx=0002 eax=A5A5325A ecx=00010200 ebx=F8400703 esi=F8400862 edi=F840073F
+    cb cx=0200 dx=0002 eax=A5A53234 ecx=00010200 ebx=F8400734 esi=F8400862 edi=F840073F
+    cb cx=0200 dx=0003 eax=A5A53212 ecx=00010200 ebx=F8401234 esi=F8400862 edi=F840073F
+    cb cx=0200 dx=0003 eax=A5A532FF ecx=00010200 ebx=F8401234 esi=F8400862 edi=F840073F
+    cb cx=0200 dx=0083 eax=A5A53200 ecx=00010200 ebx=F8401234 esi=F8400862 edi=F840073F
+S2 readback addr(02x2)=1234 00FF 5A
+== S4 untrap port 2  CF=00
+  IN b after untrap n=0000 eax=11111134 ecx=000100FF si=0862 di=073F
+== S3 1A00/1A01 vs normal IN
+ CF=00
+port 83 write5A: normalIN/1A00=5A 5A ; after 1A01=3C: normalIN/1A00=3C 3C
+port 82 write5A: normalIN/1A00=5A 5A ; after 1A01=3C: normalIN/1A00=3C 3C
+port 87 write5A: normalIN/1A00=5A 5A ; after 1A01=3C: normalIN/1A00=3C 3C
+callbacks total=0000
+1A0A untrap port 02 CF=01
+1A0A untrap port 03 CF=00
+1A0A untrap port 83 CF=01
+1A0A untrap port 0A CF=00
+1A0A untrap port 0B CF=00
+1A0A untrap port 0C CF=00
+1A0A untrap port 0F CF=00
+1A0A untrap port C4 CF=00
+1A0A untrap port 08 CF=00
+1A0A untrap port 09 CF=00
+1A0A untrap port C0 CF=00
+1A0A untrap port D0 CF=00
+DONE

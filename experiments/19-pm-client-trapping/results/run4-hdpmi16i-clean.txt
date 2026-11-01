@@ -1,0 +1,13 @@
+== ::/JL.TXT
+JLoad: 'QPIEMU.DLL' loaded successfully.
+== ::/H2.TXT
+HDPMI16 now resident
+== ::/C1.TXT
+DPMI host: flags=0000 cpu=0005 ver=005A paras=0020 entry=1148:03B0
+V86 IN 02/04/ED/83: A5 00 FF 00
+PM client:
+ CS.RPL=0003 CS=0097
+ IN 02/04/ED/83: 00 00 FF 00
+ QPI cb count=0001PM ran to completion
+== ::/DONE.TXT
+DONE 

@@ -1,0 +1,17 @@
+; #PF handler: lazy commit of extended memory (finding 21)
+; Source: Dsdma.exe, ndisasm -b 16, IP-basis addresses (see docs/reproducing.md). Short excerpt for commentary.
+00005FBE  55                push bp
+00005FBF  8BEC              mov bp,sp
+00005FC1  0F20D0            mov eax,cr2
+00005FC4  668BF8            mov edi,eax
+00005FC7  6681E700F0FFFF    and edi,0xfffff000
+00005FCE  66C1E80C          shr eax,byte 0xc
+00005FD2  663D00000400      cmp eax,0x40000
+00005FD8  7273              jc 0x604d
+00005FDA  663D00000800      cmp eax,0x80000
+00005FE0  736B              jnc 0x604d
+00005FE2  668BD0            mov edx,eax
+00005FE5  6681E2FF030000    and edx,0x3ff
+00005FEC  66C1E80A          shr eax,byte 0xa
+00005FF0  668B36C076        mov esi,[0x76c0]
+00005FF5  6764F6048601      test byte [fs:esi+eax*4],0x1

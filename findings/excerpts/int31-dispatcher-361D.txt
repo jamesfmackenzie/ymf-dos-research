@@ -1,0 +1,22 @@
+; INT 31h dispatcher head (finding 21)
+; Source: Dsdma.exe, ndisasm -b 16, IP-basis addresses (see docs/reproducing.md). Short excerpt for commentary.
+0000361D  55                push bp
+0000361E  8BEC              mov bp,sp
+00003620  8B7E06            mov di,[bp+0x6]
+00003623  893E8877          mov [0x7788],di
+00003627  66F7453400000200  test dword [di+0x34],0x20000
+0000362F  7565              jnz 0x3696
+00003631  660FB65D1D        movzx ebx,byte [di+0x1d]
+00003636  6683FB0B          cmp ebx,0xb
+0000363A  774B              ja 0x3687
+0000363C  67660FB71C5D9777  movzx ebx,word [ebx*2+0x7797]
+00003646  0BDB              or bx,bx
+00003648  7502              jnz 0x364c
+0000364A  EB3B              jmp 0x3687
+0000364C  660FB6451C        movzx eax,byte [di+0x1c]
+00003651  673B03            cmp ax,[ebx]
+00003654  7602              jna 0x3658
+00003656  EB2F              jmp 0x3687
+00003658  678B5C4302        mov bx,[ebx+eax*2+0x2]
+0000365D  0BDB              or bx,bx
+0000365F  7502              jnz 0x3663

@@ -1,0 +1,27 @@
+; INT 2Fh hook behind the 'KESB' debug interface (finding 15)
+; Source: Dsdma.exe, ndisasm -b 16, IP-basis addresses (see docs/reproducing.md). Short excerpt for commentary.
+0000C254  60                pusha
+0000C255  1E                push ds
+0000C256  06                push es
+0000C257  B900C0            mov cx,0xc000
+0000C25A  1E                push ds
+0000C25B  8BC1              mov ax,cx
+0000C25D  51                push cx
+0000C25E  CD2F              int byte 0x2f
+0000C260  59                pop cx
+0000C261  51                push cx
+0000C262  3CFF              cmp al,0xff
+0000C264  0F859A00          jnz 0xc302
+0000C268  81FB4B45          cmp bx,0x454b
+0000C26C  0F859600          jnz 0xc306
+0000C270  81FA5342          cmp dx,0x4253
+0000C274  0F858E00          jnz 0xc306
+0000C278  803E7D8400        cmp byte [0x847d],0x0
+0000C27D  7559              jnz 0xc2d8
+0000C27F  882E7D84          mov [0x847d],ch
+0000C283  8AE5              mov ah,ch
+0000C285  B001              mov al,0x1
+0000C287  CD2F              int byte 0x2f
+0000C289  0AC0              or al,al
+0000C28B  7546              jnz 0xc2d3
+0000C28D  66891E4884        mov [0x8448],ebx

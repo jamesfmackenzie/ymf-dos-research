@@ -1,0 +1,616 @@
+== ::/Q00.TXT
+QPI entry 028F:0023
+QPI ver BX=0703
+old callback 0000:0000
+1A07 set callback  CF=00
+1A09 trap port 02 CF=00
+1A09 trap port 03 CF=00
+1A09 trap port 83 CF=00
+1A09 trap port 0A CF=00
+1A09 trap port 0B CF=00
+1A09 trap port 0C CF=00
+1A09 trap port 0F CF=00
+1A09 trap port C4 CF=00
+1A09 trap port 08 CF=00
+1A09 trap port 09 CF=00
+1A09 trap port C0 CF=00
+1A09 trap port D0 CF=00
+1A09 again on port 02 (already ours)  CF=01
+== port 02
+  OUT b n=0001 eax=11111155 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=0002 eax=11111155 ecx=00010204 ebx=F8400000 esi=F8400862 edi=F840073F
+  IN b n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0200 dx=0002 eax=11111111 ecx=00010200 ebx=F8400000 esi=F8400862 edi=F840073F
+  OUT w n=0001 eax=11112255 ecx=000100FF si=0862 di=073F
+    cb cx=020C dx=0002 eax=11112255 ecx=0001020C ebx=F8400000 esi=F8400862 edi=F840073F
+  IN w n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0208 dx=0002 eax=11111111 ecx=00010208 ebx=F8400000 esi=F8400862 edi=F840073F
+  OUT d n=0001 eax=44332255 ecx=000100FF si=0862 di=073F
+    cb cx=0214 dx=0002 eax=44332255 ecx=00010214 ebx=F8400000 esi=F8400862 edi=F840073F
+  IN d n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0210 dx=0002 eax=11111111 ecx=00010210 ebx=F8400000 esi=F8400862 edi=F840073F
+  REP OUTSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=073F
+    cb cx=0264 dx=0002 eax=A5A5A5A5 ecx=00010264 ebx=F8400000 esi=F8400838 edi=F840073F
+  REP INSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=0840
+    cb cx=0260 dx=0002 eax=A5A5A5A5 ecx=00010260 ebx=F8400000 esi=F8400838 edi=F8400840
+  REP OUTSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=026C dx=0002 eax=A5A5A5A5 ecx=0001026C ebx=F8400000 esi=F8400838 edi=F8400840
+  REP INSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0268 dx=0002 eax=A5A5A5A5 ecx=00010268 ebx=F8400000 esi=F8400838 edi=F8400840
+  OUTSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0224 dx=0002 eax=A5A5A5A5 ecx=00010224 ebx=F8400000 esi=F8400838 edi=F8400840
+  INSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0220 dx=0002 eax=A5A5A5A5 ecx=00010220 ebx=F8400000 esi=F8400838 edi=F8400840
+1A0A untrap port 02 CF=00
+1A0A untrap port 03 CF=00
+1A0A untrap port 83 CF=00
+1A0A untrap port 0A CF=00
+1A0A untrap port 0B CF=00
+1A0A untrap port 0C CF=00
+1A0A untrap port 0F CF=00
+1A0A untrap port C4 CF=00
+1A0A untrap port 08 CF=00
+1A0A untrap port 09 CF=00
+1A0A untrap port C0 CF=00
+1A0A untrap port D0 CF=00
+DONE
+== ::/Q01.TXT
+QPI entry 028F:0023
+QPI ver BX=0703
+old callback 0000:0000
+1A07 set callback  CF=00
+1A09 trap port 02 CF=00
+1A09 trap port 03 CF=00
+1A09 trap port 83 CF=00
+1A09 trap port 0A CF=00
+1A09 trap port 0B CF=00
+1A09 trap port 0C CF=00
+1A09 trap port 0F CF=00
+1A09 trap port C4 CF=00
+1A09 trap port 08 CF=00
+1A09 trap port 09 CF=00
+1A09 trap port C0 CF=00
+1A09 trap port D0 CF=00
+1A09 again on port 02 (already ours)  CF=01
+== port 03
+  OUT b n=0001 eax=11111155 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=0003 eax=11111155 ecx=00010204 ebx=F8400002 esi=F8400862 edi=F840073F
+  IN b n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0200 dx=0003 eax=11111111 ecx=00010200 ebx=F8400002 esi=F8400862 edi=F840073F
+  OUT w n=0001 eax=11112255 ecx=000100FF si=0862 di=073F
+    cb cx=020C dx=0003 eax=11112255 ecx=0001020C ebx=F8400002 esi=F8400862 edi=F840073F
+  IN w n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0208 dx=0003 eax=11111111 ecx=00010208 ebx=F8400002 esi=F8400862 edi=F840073F
+  OUT d n=0001 eax=44332255 ecx=000100FF si=0862 di=073F
+    cb cx=0214 dx=0003 eax=44332255 ecx=00010214 ebx=F8400002 esi=F8400862 edi=F840073F
+  IN d n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0210 dx=0003 eax=11111111 ecx=00010210 ebx=F8400002 esi=F8400862 edi=F840073F
+  REP OUTSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=073F
+    cb cx=0264 dx=0003 eax=A5A5A5A5 ecx=00010264 ebx=F8400002 esi=F8400838 edi=F840073F
+  REP INSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=0840
+    cb cx=0260 dx=0003 eax=A5A5A5A5 ecx=00010260 ebx=F8400002 esi=F8400838 edi=F8400840
+  REP OUTSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=026C dx=0003 eax=A5A5A5A5 ecx=0001026C ebx=F8400002 esi=F8400838 edi=F8400840
+  REP INSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0268 dx=0003 eax=A5A5A5A5 ecx=00010268 ebx=F8400002 esi=F8400838 edi=F8400840
+  OUTSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0224 dx=0003 eax=A5A5A5A5 ecx=00010224 ebx=F8400002 esi=F8400838 edi=F8400840
+  INSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0220 dx=0003 eax=A5A5A5A5 ecx=00010220 ebx=F8400002 esi=F8400838 edi=F8400840
+1A0A untrap port 02 CF=00
+1A0A untrap port 03 CF=00
+1A0A untrap port 83 CF=00
+1A0A untrap port 0A CF=00
+1A0A untrap port 0B CF=00
+1A0A untrap port 0C CF=00
+1A0A untrap port 0F CF=00
+1A0A untrap port C4 CF=00
+1A0A untrap port 08 CF=00
+1A0A untrap port 09 CF=00
+1A0A untrap port C0 CF=00
+1A0A untrap port D0 CF=00
+DONE
+== ::/Q02.TXT
+QPI entry 028F:0023
+QPI ver BX=0703
+old callback 0000:0000
+1A07 set callback  CF=00
+1A09 trap port 02 CF=00
+1A09 trap port 03 CF=00
+1A09 trap port 83 CF=00
+1A09 trap port 0A CF=00
+1A09 trap port 0B CF=00
+1A09 trap port 0C CF=00
+1A09 trap port 0F CF=00
+1A09 trap port C4 CF=00
+1A09 trap port 08 CF=00
+1A09 trap port 09 CF=00
+1A09 trap port C0 CF=00
+1A09 trap port D0 CF=00
+1A09 again on port 02 (already ours)  CF=01
+== port 83
+  OUT b n=0001 eax=11111155 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=0083 eax=11111155 ecx=00010204 ebx=F8400004 esi=F8400862 edi=F840073F
+  IN b n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0200 dx=0083 eax=11111111 ecx=00010200 ebx=F8400004 esi=F8400862 edi=F840073F
+  OUT w n=0001 eax=11112255 ecx=000100FF si=0862 di=073F
+    cb cx=020C dx=0083 eax=11112255 ecx=0001020C ebx=F8400004 esi=F8400862 edi=F840073F
+  IN w n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0208 dx=0083 eax=11111111 ecx=00010208 ebx=F8400004 esi=F8400862 edi=F840073F
+  OUT d n=0001 eax=44332255 ecx=000100FF si=0862 di=073F
+    cb cx=0214 dx=0083 eax=44332255 ecx=00010214 ebx=F8400004 esi=F8400862 edi=F840073F
+  IN d n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0210 dx=0083 eax=11111111 ecx=00010210 ebx=F8400004 esi=F8400862 edi=F840073F
+  REP OUTSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=073F
+    cb cx=0264 dx=0083 eax=A5A5A5A5 ecx=00010264 ebx=F8400004 esi=F8400838 edi=F840073F
+  REP INSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=0840
+    cb cx=0260 dx=0083 eax=A5A5A5A5 ecx=00010260 ebx=F8400004 esi=F8400838 edi=F8400840
+  REP OUTSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=026C dx=0083 eax=A5A5A5A5 ecx=0001026C ebx=F8400004 esi=F8400838 edi=F8400840
+  REP INSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0268 dx=0083 eax=A5A5A5A5 ecx=00010268 ebx=F8400004 esi=F8400838 edi=F8400840
+  OUTSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0224 dx=0083 eax=A5A5A5A5 ecx=00010224 ebx=F8400004 esi=F8400838 edi=F8400840
+  INSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0220 dx=0083 eax=A5A5A5A5 ecx=00010220 ebx=F8400004 esi=F8400838 edi=F8400840
+1A0A untrap port 02 CF=00
+1A0A untrap port 03 CF=00
+1A0A untrap port 83 CF=00
+1A0A untrap port 0A CF=00
+1A0A untrap port 0B CF=00
+1A0A untrap port 0C CF=00
+1A0A untrap port 0F CF=00
+1A0A untrap port C4 CF=00
+1A0A untrap port 08 CF=00
+1A0A untrap port 09 CF=00
+1A0A untrap port C0 CF=00
+1A0A untrap port D0 CF=00
+DONE
+== ::/Q03.TXT
+QPI entry 028F:0023
+QPI ver BX=0703
+old callback 0000:0000
+1A07 set callback  CF=00
+1A09 trap port 02 CF=00
+1A09 trap port 03 CF=00
+1A09 trap port 83 CF=00
+1A09 trap port 0A CF=00
+1A09 trap port 0B CF=00
+1A09 trap port 0C CF=00
+1A09 trap port 0F CF=00
+1A09 trap port C4 CF=00
+1A09 trap port 08 CF=00
+1A09 trap port 09 CF=00
+1A09 trap port C0 CF=00
+1A09 trap port D0 CF=00
+1A09 again on port 02 (already ours)  CF=01
+== port 0A
+  OUT b n=0001 eax=11111155 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=000A eax=11111155 ecx=00010204 ebx=F8400006 esi=F8400862 edi=F840073F
+  IN b n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0200 dx=000A eax=11111111 ecx=00010200 ebx=F8400006 esi=F8400862 edi=F840073F
+  OUT w n=0001 eax=11112255 ecx=000100FF si=0862 di=073F
+    cb cx=020C dx=000A eax=11112255 ecx=0001020C ebx=F8400006 esi=F8400862 edi=F840073F
+  IN w n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0208 dx=000A eax=11111111 ecx=00010208 ebx=F8400006 esi=F8400862 edi=F840073F
+  OUT d n=0001 eax=44332255 ecx=000100FF si=0862 di=073F
+    cb cx=0214 dx=000A eax=44332255 ecx=00010214 ebx=F8400006 esi=F8400862 edi=F840073F
+  IN d n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0210 dx=000A eax=11111111 ecx=00010210 ebx=F8400006 esi=F8400862 edi=F840073F
+  REP OUTSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=073F
+    cb cx=0264 dx=000A eax=A5A5A5A5 ecx=00010264 ebx=F8400006 esi=F8400838 edi=F840073F
+  REP INSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=0840
+    cb cx=0260 dx=000A eax=A5A5A5A5 ecx=00010260 ebx=F8400006 esi=F8400838 edi=F8400840
+  REP OUTSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=026C dx=000A eax=A5A5A5A5 ecx=0001026C ebx=F8400006 esi=F8400838 edi=F8400840
+  REP INSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0268 dx=000A eax=A5A5A5A5 ecx=00010268 ebx=F8400006 esi=F8400838 edi=F8400840
+  OUTSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0224 dx=000A eax=A5A5A5A5 ecx=00010224 ebx=F8400006 esi=F8400838 edi=F8400840
+  INSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0220 dx=000A eax=A5A5A5A5 ecx=00010220 ebx=F8400006 esi=F8400838 edi=F8400840
+1A0A untrap port 02 CF=00
+1A0A untrap port 03 CF=00
+1A0A untrap port 83 CF=00
+1A0A untrap port 0A CF=00
+1A0A untrap port 0B CF=00
+1A0A untrap port 0C CF=00
+1A0A untrap port 0F CF=00
+1A0A untrap port C4 CF=00
+1A0A untrap port 08 CF=00
+1A0A untrap port 09 CF=00
+1A0A untrap port C0 CF=00
+1A0A untrap port D0 CF=00
+DONE
+== ::/Q04.TXT
+QPI entry 028F:0023
+QPI ver BX=0703
+old callback 0000:0000
+1A07 set callback  CF=00
+1A09 trap port 02 CF=00
+1A09 trap port 03 CF=00
+1A09 trap port 83 CF=00
+1A09 trap port 0A CF=00
+1A09 trap port 0B CF=00
+1A09 trap port 0C CF=00
+1A09 trap port 0F CF=00
+1A09 trap port C4 CF=00
+1A09 trap port 08 CF=00
+1A09 trap port 09 CF=00
+1A09 trap port C0 CF=00
+1A09 trap port D0 CF=00
+1A09 again on port 02 (already ours)  CF=01
+== port 0B
+  OUT b n=0001 eax=11111155 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=000B eax=11111155 ecx=00010204 ebx=F8400008 esi=F8400862 edi=F840073F
+  IN b n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0200 dx=000B eax=11111111 ecx=00010200 ebx=F8400008 esi=F8400862 edi=F840073F
+  OUT w n=0001 eax=11112255 ecx=000100FF si=0862 di=073F
+    cb cx=020C dx=000B eax=11112255 ecx=0001020C ebx=F8400008 esi=F8400862 edi=F840073F
+  IN w n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0208 dx=000B eax=11111111 ecx=00010208 ebx=F8400008 esi=F8400862 edi=F840073F
+  OUT d n=0001 eax=44332255 ecx=000100FF si=0862 di=073F
+    cb cx=0214 dx=000B eax=44332255 ecx=00010214 ebx=F8400008 esi=F8400862 edi=F840073F
+  IN d n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0210 dx=000B eax=11111111 ecx=00010210 ebx=F8400008 esi=F8400862 edi=F840073F
+  REP OUTSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=073F
+    cb cx=0264 dx=000B eax=A5A5A5A5 ecx=00010264 ebx=F8400008 esi=F8400838 edi=F840073F
+  REP INSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=0840
+    cb cx=0260 dx=000B eax=A5A5A5A5 ecx=00010260 ebx=F8400008 esi=F8400838 edi=F8400840
+  REP OUTSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=026C dx=000B eax=A5A5A5A5 ecx=0001026C ebx=F8400008 esi=F8400838 edi=F8400840
+  REP INSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0268 dx=000B eax=A5A5A5A5 ecx=00010268 ebx=F8400008 esi=F8400838 edi=F8400840
+  OUTSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0224 dx=000B eax=A5A5A5A5 ecx=00010224 ebx=F8400008 esi=F8400838 edi=F8400840
+  INSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0220 dx=000B eax=A5A5A5A5 ecx=00010220 ebx=F8400008 esi=F8400838 edi=F8400840
+1A0A untrap port 02 CF=00
+1A0A untrap port 03 CF=00
+1A0A untrap port 83 CF=00
+1A0A untrap port 0A CF=00
+1A0A untrap port 0B CF=00
+1A0A untrap port 0C CF=00
+1A0A untrap port 0F CF=00
+1A0A untrap port C4 CF=00
+1A0A untrap port 08 CF=00
+1A0A untrap port 09 CF=00
+1A0A untrap port C0 CF=00
+1A0A untrap port D0 CF=00
+DONE
+== ::/Q05.TXT
+QPI entry 028F:0023
+QPI ver BX=0703
+old callback 0000:0000
+1A07 set callback  CF=00
+1A09 trap port 02 CF=00
+1A09 trap port 03 CF=00
+1A09 trap port 83 CF=00
+1A09 trap port 0A CF=00
+1A09 trap port 0B CF=00
+1A09 trap port 0C CF=00
+1A09 trap port 0F CF=00
+1A09 trap port C4 CF=00
+1A09 trap port 08 CF=00
+1A09 trap port 09 CF=00
+1A09 trap port C0 CF=00
+1A09 trap port D0 CF=00
+1A09 again on port 02 (already ours)  CF=01
+== port 0C
+  OUT b n=0001 eax=11111155 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=000C eax=11111155 ecx=00010204 ebx=F840000A esi=F8400862 edi=F840073F
+  IN b n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0200 dx=000C eax=11111111 ecx=00010200 ebx=F840000A esi=F8400862 edi=F840073F
+  OUT w n=0001 eax=11112255 ecx=000100FF si=0862 di=073F
+    cb cx=020C dx=000C eax=11112255 ecx=0001020C ebx=F840000A esi=F8400862 edi=F840073F
+  IN w n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0208 dx=000C eax=11111111 ecx=00010208 ebx=F840000A esi=F8400862 edi=F840073F
+  OUT d n=0001 eax=44332255 ecx=000100FF si=0862 di=073F
+    cb cx=0214 dx=000C eax=44332255 ecx=00010214 ebx=F840000A esi=F8400862 edi=F840073F
+  IN d n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0210 dx=000C eax=11111111 ecx=00010210 ebx=F840000A esi=F8400862 edi=F840073F
+  REP OUTSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=073F
+    cb cx=0264 dx=000C eax=A5A5A5A5 ecx=00010264 ebx=F840000A esi=F8400838 edi=F840073F
+  REP INSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=0840
+    cb cx=0260 dx=000C eax=A5A5A5A5 ecx=00010260 ebx=F840000A esi=F8400838 edi=F8400840
+  REP OUTSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=026C dx=000C eax=A5A5A5A5 ecx=0001026C ebx=F840000A esi=F8400838 edi=F8400840
+  REP INSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0268 dx=000C eax=A5A5A5A5 ecx=00010268 ebx=F840000A esi=F8400838 edi=F8400840
+  OUTSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0224 dx=000C eax=A5A5A5A5 ecx=00010224 ebx=F840000A esi=F8400838 edi=F8400840
+  INSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0220 dx=000C eax=A5A5A5A5 ecx=00010220 ebx=F840000A esi=F8400838 edi=F8400840
+1A0A untrap port 02 CF=00
+1A0A untrap port 03 CF=00
+1A0A untrap port 83 CF=00
+1A0A untrap port 0A CF=00
+1A0A untrap port 0B CF=00
+1A0A untrap port 0C CF=00
+1A0A untrap port 0F CF=00
+1A0A untrap port C4 CF=00
+1A0A untrap port 08 CF=00
+1A0A untrap port 09 CF=00
+1A0A untrap port C0 CF=00
+1A0A untrap port D0 CF=00
+DONE
+== ::/Q06.TXT
+QPI entry 028F:0023
+QPI ver BX=0703
+old callback 0000:0000
+1A07 set callback  CF=00
+1A09 trap port 02 CF=00
+1A09 trap port 03 CF=00
+1A09 trap port 83 CF=00
+1A09 trap port 0A CF=00
+1A09 trap port 0B CF=00
+1A09 trap port 0C CF=00
+1A09 trap port 0F CF=00
+1A09 trap port C4 CF=00
+1A09 trap port 08 CF=00
+1A09 trap port 09 CF=00
+1A09 trap port C0 CF=00
+1A09 trap port D0 CF=00
+1A09 again on port 02 (already ours)  CF=01
+== port C4
+  OUT b n=0001 eax=11111155 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=00C4 eax=11111155 ecx=00010204 ebx=F840000C esi=F8400862 edi=F840073F
+  IN b n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0200 dx=00C4 eax=11111111 ecx=00010200 ebx=F840000C esi=F8400862 edi=F840073F
+  OUT w n=0001 eax=11112255 ecx=000100FF si=0862 di=073F
+    cb cx=020C dx=00C4 eax=11112255 ecx=0001020C ebx=F840000C esi=F8400862 edi=F840073F
+  IN w n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0208 dx=00C4 eax=11111111 ecx=00010208 ebx=F840000C esi=F8400862 edi=F840073F
+  OUT d n=0001 eax=44332255 ecx=000100FF si=0862 di=073F
+    cb cx=0214 dx=00C4 eax=44332255 ecx=00010214 ebx=F840000C esi=F8400862 edi=F840073F
+  IN d n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0210 dx=00C4 eax=11111111 ecx=00010210 ebx=F840000C esi=F8400862 edi=F840073F
+  REP OUTSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=073F
+    cb cx=0264 dx=00C4 eax=A5A5A5A5 ecx=00010264 ebx=F840000C esi=F8400838 edi=F840073F
+  REP INSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=0840
+    cb cx=0260 dx=00C4 eax=A5A5A5A5 ecx=00010260 ebx=F840000C esi=F8400838 edi=F8400840
+  REP OUTSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=026C dx=00C4 eax=A5A5A5A5 ecx=0001026C ebx=F840000C esi=F8400838 edi=F8400840
+  REP INSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0268 dx=00C4 eax=A5A5A5A5 ecx=00010268 ebx=F840000C esi=F8400838 edi=F8400840
+  OUTSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0224 dx=00C4 eax=A5A5A5A5 ecx=00010224 ebx=F840000C esi=F8400838 edi=F8400840
+  INSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0220 dx=00C4 eax=A5A5A5A5 ecx=00010220 ebx=F840000C esi=F8400838 edi=F8400840
+1A0A untrap port 02 CF=00
+1A0A untrap port 03 CF=00
+1A0A untrap port 83 CF=00
+1A0A untrap port 0A CF=00
+1A0A untrap port 0B CF=00
+1A0A untrap port 0C CF=00
+1A0A untrap port 0F CF=00
+1A0A untrap port C4 CF=00
+1A0A untrap port 08 CF=00
+1A0A untrap port 09 CF=00
+1A0A untrap port C0 CF=00
+1A0A untrap port D0 CF=00
+DONE
+== ::/Q07.TXT
+QPI entry 028F:0023
+QPI ver BX=0703
+old callback 0000:0000
+1A07 set callback  CF=00
+1A09 trap port 02 CF=00
+1A09 trap port 03 CF=00
+1A09 trap port 83 CF=00
+1A09 trap port 0A CF=00
+1A09 trap port 0B CF=00
+1A09 trap port 0C CF=00
+1A09 trap port 0F CF=00
+1A09 trap port C4 CF=00
+1A09 trap port 08 CF=00
+1A09 trap port 09 CF=00
+1A09 trap port C0 CF=00
+1A09 trap port D0 CF=00
+1A09 again on port 02 (already ours)  CF=01
+== port 08
+  OUT b n=0001 eax=11111155 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=0008 eax=11111155 ecx=00010204 ebx=F840000E esi=F8400862 edi=F840073F
+  IN b n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0200 dx=0008 eax=11111111 ecx=00010200 ebx=F840000E esi=F8400862 edi=F840073F
+  OUT w n=0001 eax=11112255 ecx=000100FF si=0862 di=073F
+    cb cx=020C dx=0008 eax=11112255 ecx=0001020C ebx=F840000E esi=F8400862 edi=F840073F
+  IN w n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0208 dx=0008 eax=11111111 ecx=00010208 ebx=F840000E esi=F8400862 edi=F840073F
+  OUT d n=0001 eax=44332255 ecx=000100FF si=0862 di=073F
+    cb cx=0214 dx=0008 eax=44332255 ecx=00010214 ebx=F840000E esi=F8400862 edi=F840073F
+  IN d n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0210 dx=0008 eax=11111111 ecx=00010210 ebx=F840000E esi=F8400862 edi=F840073F
+  REP OUTSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=073F
+    cb cx=0264 dx=0008 eax=A5A5A5A5 ecx=00010264 ebx=F840000E esi=F8400838 edi=F840073F
+  REP INSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=0840
+    cb cx=0260 dx=0008 eax=A5A5A5A5 ecx=00010260 ebx=F840000E esi=F8400838 edi=F8400840
+  REP OUTSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=026C dx=0008 eax=A5A5A5A5 ecx=0001026C ebx=F840000E esi=F8400838 edi=F8400840
+  REP INSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0268 dx=0008 eax=A5A5A5A5 ecx=00010268 ebx=F840000E esi=F8400838 edi=F8400840
+  OUTSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0224 dx=0008 eax=A5A5A5A5 ecx=00010224 ebx=F840000E esi=F8400838 edi=F8400840
+  INSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0220 dx=0008 eax=A5A5A5A5 ecx=00010220 ebx=F840000E esi=F8400838 edi=F8400840
+1A0A untrap port 02 CF=00
+1A0A untrap port 03 CF=00
+1A0A untrap port 83 CF=00
+1A0A untrap port 0A CF=00
+1A0A untrap port 0B CF=00
+1A0A untrap port 0C CF=00
+1A0A untrap port 0F CF=00
+1A0A untrap port C4 CF=00
+1A0A untrap port 08 CF=00
+1A0A untrap port 09 CF=00
+1A0A untrap port C0 CF=00
+1A0A untrap port D0 CF=00
+DONE
+== ::/Q08.TXT
+QPI entry 028F:0023
+QPI ver BX=0703
+old callback 0000:0000
+1A07 set callback  CF=00
+1A09 trap port 02 CF=00
+1A09 trap port 03 CF=00
+1A09 trap port 83 CF=00
+1A09 trap port 0A CF=00
+1A09 trap port 0B CF=00
+1A09 trap port 0C CF=00
+1A09 trap port 0F CF=00
+1A09 trap port C4 CF=00
+1A09 trap port 08 CF=00
+1A09 trap port 09 CF=00
+1A09 trap port C0 CF=00
+1A09 trap port D0 CF=00
+1A09 again on port 02 (already ours)  CF=01
+== port 09
+  OUT b n=0001 eax=11111155 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=0009 eax=11111155 ecx=00010204 ebx=F8400010 esi=F8400862 edi=F840073F
+  IN b n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0200 dx=0009 eax=11111111 ecx=00010200 ebx=F8400010 esi=F8400862 edi=F840073F
+  OUT w n=0001 eax=11112255 ecx=000100FF si=0862 di=073F
+    cb cx=020C dx=0009 eax=11112255 ecx=0001020C ebx=F8400010 esi=F8400862 edi=F840073F
+  IN w n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0208 dx=0009 eax=11111111 ecx=00010208 ebx=F8400010 esi=F8400862 edi=F840073F
+  OUT d n=0001 eax=44332255 ecx=000100FF si=0862 di=073F
+    cb cx=0214 dx=0009 eax=44332255 ecx=00010214 ebx=F8400010 esi=F8400862 edi=F840073F
+  IN d n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0210 dx=0009 eax=11111111 ecx=00010210 ebx=F8400010 esi=F8400862 edi=F840073F
+  REP OUTSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=073F
+    cb cx=0264 dx=0009 eax=A5A5A5A5 ecx=00010264 ebx=F8400010 esi=F8400838 edi=F840073F
+  REP INSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=0840
+    cb cx=0260 dx=0009 eax=A5A5A5A5 ecx=00010260 ebx=F8400010 esi=F8400838 edi=F8400840
+  REP OUTSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=026C dx=0009 eax=A5A5A5A5 ecx=0001026C ebx=F8400010 esi=F8400838 edi=F8400840
+  REP INSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0268 dx=0009 eax=A5A5A5A5 ecx=00010268 ebx=F8400010 esi=F8400838 edi=F8400840
+  OUTSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0224 dx=0009 eax=A5A5A5A5 ecx=00010224 ebx=F8400010 esi=F8400838 edi=F8400840
+  INSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0220 dx=0009 eax=A5A5A5A5 ecx=00010220 ebx=F8400010 esi=F8400838 edi=F8400840
+1A0A untrap port 02 CF=00
+1A0A untrap port 03 CF=00
+1A0A untrap port 83 CF=00
+1A0A untrap port 0A CF=00
+1A0A untrap port 0B CF=00
+1A0A untrap port 0C CF=00
+1A0A untrap port 0F CF=00
+1A0A untrap port C4 CF=00
+1A0A untrap port 08 CF=00
+1A0A untrap port 09 CF=00
+1A0A untrap port C0 CF=00
+1A0A untrap port D0 CF=00
+DONE
+== ::/Q09.TXT
+QPI entry 028F:0023
+QPI ver BX=0703
+old callback 0000:0000
+1A07 set callback  CF=00
+1A09 trap port 02 CF=00
+1A09 trap port 03 CF=00
+1A09 trap port 83 CF=00
+1A09 trap port 0A CF=00
+1A09 trap port 0B CF=00
+1A09 trap port 0C CF=00
+1A09 trap port 0F CF=00
+1A09 trap port C4 CF=00
+1A09 trap port 08 CF=00
+1A09 trap port 09 CF=00
+1A09 trap port C0 CF=00
+1A09 trap port D0 CF=00
+1A09 again on port 02 (already ours)  CF=01
+== port C0
+  OUT b n=0001 eax=11111155 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=00C0 eax=11111155 ecx=00010204 ebx=F8400012 esi=F8400862 edi=F840073F
+  IN b n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0200 dx=00C0 eax=11111111 ecx=00010200 ebx=F8400012 esi=F8400862 edi=F840073F
+  OUT w n=0001 eax=11112255 ecx=000100FF si=0862 di=073F
+    cb cx=020C dx=00C0 eax=11112255 ecx=0001020C ebx=F8400012 esi=F8400862 edi=F840073F
+  IN w n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0208 dx=00C0 eax=11111111 ecx=00010208 ebx=F8400012 esi=F8400862 edi=F840073F
+  OUT d n=0001 eax=44332255 ecx=000100FF si=0862 di=073F
+    cb cx=0214 dx=00C0 eax=44332255 ecx=00010214 ebx=F8400012 esi=F8400862 edi=F840073F
+  IN d n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0210 dx=00C0 eax=11111111 ecx=00010210 ebx=F8400012 esi=F8400862 edi=F840073F
+  REP OUTSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=073F
+    cb cx=0264 dx=00C0 eax=A5A5A5A5 ecx=00010264 ebx=F8400012 esi=F8400838 edi=F840073F
+  REP INSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=0840
+    cb cx=0260 dx=00C0 eax=A5A5A5A5 ecx=00010260 ebx=F8400012 esi=F8400838 edi=F8400840
+  REP OUTSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=026C dx=00C0 eax=A5A5A5A5 ecx=0001026C ebx=F8400012 esi=F8400838 edi=F8400840
+  REP INSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0268 dx=00C0 eax=A5A5A5A5 ecx=00010268 ebx=F8400012 esi=F8400838 edi=F8400840
+  OUTSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0224 dx=00C0 eax=A5A5A5A5 ecx=00010224 ebx=F8400012 esi=F8400838 edi=F8400840
+  INSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0220 dx=00C0 eax=A5A5A5A5 ecx=00010220 ebx=F8400012 esi=F8400838 edi=F8400840
+1A0A untrap port 02 CF=00
+1A0A untrap port 03 CF=00
+1A0A untrap port 83 CF=00
+1A0A untrap port 0A CF=00
+1A0A untrap port 0B CF=00
+1A0A untrap port 0C CF=00
+1A0A untrap port 0F CF=00
+1A0A untrap port C4 CF=00
+1A0A untrap port 08 CF=00
+1A0A untrap port 09 CF=00
+1A0A untrap port C0 CF=00
+1A0A untrap port D0 CF=00
+DONE
+== ::/Q10.TXT
+QPI entry 028F:0023
+QPI ver BX=0703
+old callback 0000:0000
+1A07 set callback  CF=00
+1A09 trap port 02 CF=00
+1A09 trap port 03 CF=00
+1A09 trap port 83 CF=00
+1A09 trap port 0A CF=00
+1A09 trap port 0B CF=00
+1A09 trap port 0C CF=00
+1A09 trap port 0F CF=00
+1A09 trap port C4 CF=00
+1A09 trap port 08 CF=00
+1A09 trap port 09 CF=00
+1A09 trap port C0 CF=00
+1A09 trap port D0 CF=00
+1A09 again on port 02 (already ours)  CF=01
+== port D0
+  OUT b n=0001 eax=11111155 ecx=000100FF si=0862 di=073F
+    cb cx=0204 dx=00D0 eax=11111155 ecx=00010204 ebx=F8400014 esi=F8400862 edi=F840073F
+  IN b n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0200 dx=00D0 eax=11111111 ecx=00010200 ebx=F8400014 esi=F8400862 edi=F840073F
+  OUT w n=0001 eax=11112255 ecx=000100FF si=0862 di=073F
+    cb cx=020C dx=00D0 eax=11112255 ecx=0001020C ebx=F8400014 esi=F8400862 edi=F840073F
+  IN w n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0208 dx=00D0 eax=11111111 ecx=00010208 ebx=F8400014 esi=F8400862 edi=F840073F
+  OUT d n=0001 eax=44332255 ecx=000100FF si=0862 di=073F
+    cb cx=0214 dx=00D0 eax=44332255 ecx=00010214 ebx=F8400014 esi=F8400862 edi=F840073F
+  IN d n=0001 eax=A5A5A5A5 ecx=000100FF si=0862 di=073F
+    cb cx=0210 dx=00D0 eax=11111111 ecx=00010210 ebx=F8400014 esi=F8400862 edi=F840073F
+  REP OUTSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=073F
+    cb cx=0264 dx=00D0 eax=A5A5A5A5 ecx=00010264 ebx=F8400014 esi=F8400838 edi=F840073F
+  REP INSB cx3 n=0001 eax=A5A5A5A5 ecx=00010003 si=0838 di=0840
+    cb cx=0260 dx=00D0 eax=A5A5A5A5 ecx=00010260 ebx=F8400014 esi=F8400838 edi=F8400840
+  REP OUTSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=026C dx=00D0 eax=A5A5A5A5 ecx=0001026C ebx=F8400014 esi=F8400838 edi=F8400840
+  REP INSW cx2 n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0268 dx=00D0 eax=A5A5A5A5 ecx=00010268 ebx=F8400014 esi=F8400838 edi=F8400840
+  OUTSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0224 dx=00D0 eax=A5A5A5A5 ecx=00010224 ebx=F8400014 esi=F8400838 edi=F8400840
+  INSB n=0001 eax=A5A5A5A5 ecx=00010002 si=0838 di=0840
+    cb cx=0220 dx=00D0 eax=A5A5A5A5 ecx=00010220 ebx=F8400014 esi=F8400838 edi=F8400840
+1A0A untrap port 02 CF=00
+1A0A untrap port 03 CF=00
+1A0A untrap port 83 CF=00
+1A0A untrap port 0A CF=00
+1A0A untrap port 0B CF=00
+1A0A untrap port 0C CF=00
+1A0A untrap port 0F CF=00
+1A0A untrap port C4 CF=00
+1A0A untrap port 08 CF=00
+1A0A untrap port 09 CF=00
+1A0A untrap port C0 CF=00
+1A0A untrap port D0 CF=00
+DONE

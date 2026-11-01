@@ -1,0 +1,11 @@
+DEBUG: Set prot-mode memory breakpoint at 0048:00001020
+DEBUG: Set prot-mode memory breakpoint at 0008:001108D4
+Breakpoint list:
+-------------------------------------------------------------------------
+00. BPPM 0008:001108D4 (00)
+01. BPPM 0048:00001020 (00)
+02. BPINT 2F AH=BE AL=EF
+I-> _
+=== SNAP snap s1
+ooooRegister Overviewooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+EAX=F7C0BEEF  ESI=00010100  DS=0000   ES=0000   FS=0000   GS=0000   SS=0010 Pr16

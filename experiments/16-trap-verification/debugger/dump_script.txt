@@ -1,0 +1,37 @@
+send bpint 2f be ef
+raw 1b5b31357e
+wait 6
+raw 1b5b31357e
+wait 45
+send dv f8017060
+snap A-tss-60
+send dv f8017080
+snap A-tss-80
+send dv 113f20
+snap A-idt-0
+send dv 113f90
+snap A-idt-14
+raw 1b5b31357e
+wait 25
+send dv f8017060
+snap B-tss-60
+send dv f8017080
+snap B-tss-80
+send dv 113f20
+snap B-idt-0
+send dv 113f90
+snap B-idt-14
+send dv f7c068b0
+snap B-stub
+send dv f7c01020
+snap B-h1020
+send dv f7c078c0
+snap B-tab78c0
+send dv f7c07890
+snap B-v7890
+send dv f7c07870
+snap B-v7870
+send dv f7c07170
+snap B-v7170
+send dv f7c07a00
+snap B-sv7a00

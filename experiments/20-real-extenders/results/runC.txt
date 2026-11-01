@@ -1,0 +1,7 @@
+== ::/DS.TXT
+Legacy Audio Emulation Program V1.00
+== ::/JL.TXT
+JLoad: 'QPIEMU.DLL' loaded successfully.
+== ::/QI.TXT
+QC installed
+== ::/V86.TXT
