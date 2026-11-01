@@ -142,12 +142,15 @@ findings means the maintainer's unpublished notes from the first real-hardware b
 - Full disassembly listings are not shipped. `tools/regen-listings.sh` rebuilds them from the fetched binary with `ndisasm`.
 
 ## What's next
-A behavioural spec for a replacement TSR (`OpenDSDMA`) will be written from these findings
-and the datasheets, then implemented separately from it.
+- **Spec (draft):** [`spec/`](spec/) is a behavioural specification for a replacement TSR (`OpenDSDMA`), derived from these
+  findings and the datasheets, with every requirement tagged verified, inferred or untested. It will be frozen and tagged
+  before any implementation starts.
+- **OpenDSDMA:** an open replacement, written in a separate repository from the spec only.
+- **Hardware validation** of the warm-up hypothesis and of the replacement.
 
 ## Licence
-- Written material (findings, docs, READMEs, recorded results): [CC BY 4.0](LICENSE-docs.txt).
-- Code (harness, tools, test programs, scripts): [MIT](LICENSE).
+- Written material (findings, docs, spec, READMEs, recorded results): [CC BY 4.0](LICENSE-docs.txt).
+- Code (harness, tools, test programs, scripts, `spec/check.py`): [MIT](LICENSE).
 - The Yamaha software and datasheets are not included and remain the property of their owners. Short disassembly
   excerpts in `findings/excerpts/` are quoted for commentary and research.
 

@@ -2,9 +2,9 @@ MIT License
 
 Copyright (c) 2026 James Mackenzie
 
-This licence covers the code in this repository: everything under harness/ and tools/, the test programs and
+This licence covers the code in this repository: everything under harness/ and tools/, spec/check.py, the test programs and
 scripts under experiments/ (src/, tools/, autoexec/, debugger/ and verify.sh files), and samples/ymf744/fetch.sh.
-The written material (findings/, docs/, README files and recorded results) is under CC BY 4.0, see LICENSE-docs.txt.
+The written material (findings/, docs/, spec/ text, README files and recorded results) is under CC BY 4.0, see LICENSE-docs.txt.
 The Yamaha software and vendor datasheets are not part of this repository and remain the property of their owners.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

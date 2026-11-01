@@ -20,7 +20,7 @@
 - Why loading Dsdma and then QPIEMU makes a V86 DMA probe hang (Finding 20).
 
 ## Planned work
-1. **Behavioural spec** (`spec/`): requirements for a replacement TSR derived from the
+1. **Behavioural spec** (`spec/`, draft written): requirements for a replacement TSR derived from the
    findings and the chipset/card datasheets, with each requirement tagged verified, inferred
    or untested. Frozen and tagged before any implementation starts.
 2. **OpenDSDMA**: an open-source replacement implemented from the spec only, in a separate
