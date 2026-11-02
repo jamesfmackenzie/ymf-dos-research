@@ -1,0 +1,16 @@
+flowchart TB
+  G["DOS game (Sound Blaster driver)"]
+  D["Dsdma.exe, loaded at boot after setupds /s exits with code 2"]
+  P["8237 DMA ports 00-0F, 81-8B, C0-DE"]
+  T["CPU faults on the access (I/O permission bitmap, #GP)"]
+  H["Dsdma's #GP handler decodes the IN/OUT and emulates the 8237"]
+  SL["Card's D-DMA slave registers (I/O base F390)"]
+  C["YMF724/744 card (SB, OPL3 and MPU-401 logic)"]
+  M[("RAM: the DMA buffer")]
+  G -- "OUT 0Bh, 02h, 83h, 0Ah ..." --> P
+  D -. "installs the trap" .-> T
+  P -. "hooked channel only (default: channel 1)" .-> T
+  T --> H
+  H -- "translated access" --> SL
+  SL --> C
+  C == "card moves the samples itself (PCI bus master)" ==> M
