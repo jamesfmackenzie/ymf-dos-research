@@ -29,9 +29,7 @@ DOS game's sound never starts or hangs. That is the case for most PCs built sinc
 
 **How the pieces fit together.**
 
-![How a game's DMA setup reaches the card through Dsdma: the game writes to the 8237 DMA ports; for the one hooked channel the CPU faults on the access; Dsdma's fault handler decodes it and applies it to the card's D-DMA slave registers; the card then moves the samples to and from RAM itself.](docs/img/data-path.svg)
-
-<sub>Diagram source (Mermaid): [`docs/img/data-path.mmd`](docs/img/data-path.mmd). It is an image because the GitHub mobile app does not render Mermaid.</sub>
+![Data path: game, 8237 DMA ports, CPU fault, Dsdma handler, card's D-DMA slave registers, card, RAM](docs/img/data-path.svg)
 
 The game also talks to the card directly for Sound Blaster commands (port 220h, interrupt on IRQ 5), which is not
 trapped. For its DMA setup, the game believes it is programming the PC's DMA controller. For the one channel Dsdma hooks (channel 1 by default; the
