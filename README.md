@@ -29,24 +29,9 @@ DOS game's sound never starts or hangs. That is the case for most PCs built sinc
 
 **How the pieces fit together.**
 
-```mermaid
-flowchart TB
-  G["DOS game (Sound Blaster driver)"]
-  D["Dsdma.exe, loaded at boot after setupds /s exits with code 2"]
-  P["8237 DMA ports 00-0F, 81-8B, C0-DE"]
-  T["CPU faults on the access (I/O permission bitmap, #GP)"]
-  H["Dsdma's #GP handler decodes the IN/OUT and emulates the 8237"]
-  SL["Card's D-DMA slave registers (I/O base F390)"]
-  C["YMF724/744 card (SB, OPL3 and MPU-401 logic)"]
-  M[("RAM: the DMA buffer")]
-  G -- "OUT 0Bh, 02h, 83h, 0Ah ..." --> P
-  D -. "installs the trap" .-> T
-  P -. "hooked channel only (default: channel 1)" .-> T
-  T --> H
-  H -- "translated access" --> SL
-  SL --> C
-  C == "card moves the samples itself (PCI bus master)" ==> M
-```
+![How a game's DMA setup reaches the card through Dsdma: the game writes to the 8237 DMA ports; for the one hooked channel the CPU faults on the access; Dsdma's fault handler decodes it and applies it to the card's D-DMA slave registers; the card then moves the samples to and from RAM itself.](docs/img/data-path.svg)
+
+<sub>Diagram source (Mermaid): [`docs/img/data-path.mmd`](docs/img/data-path.mmd). It is an image because the GitHub mobile app does not render Mermaid.</sub>
 
 The game also talks to the card directly for Sound Blaster commands (port 220h, interrupt on IRQ 5), which is not
 trapped. For its DMA setup, the game believes it is programming the PC's DMA controller. For the one channel Dsdma hooks (channel 1 by default; the
