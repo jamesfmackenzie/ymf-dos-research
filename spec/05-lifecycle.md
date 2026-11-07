@@ -25,7 +25,7 @@ code 2, and then runs the TSR with **no command line** (F8, F13). The replacemen
 
 These are the improvements listed in the project roadmap. They are `MAY` and `untested` by definition.
 
-- **LIFE-11** `MAY` `untested` `F2 F6` - Write the slave's **Master Clear** at install, and/or when the guest writes the 8237 master-clear port. Controlled by an option. Whether it should be on by default depends on the hardware tests (`DEC-1`).
+- **LIFE-11** `MAY` `untested` `F2 F6` - Write the slave's **Master Clear** at install, and/or when the guest writes the 8237 master-clear port. Whether to do this, and whether it is fixed or configurable, is decision `DEC-1`.
 - **LIFE-12** `MAY` `untested` - A status command that reports whether the TSR is resident, the hooked channel, the slave base and the number of trapped accesses handled.
 - **LIFE-13** `MAY` `untested` - An unload command that restores the memory manager's tables and releases the memory (`TRAP-8`). The original cannot be unloaded.
 - **LIFE-14** `MAY` `untested` - A diagnostic mode that logs trapped accesses (port, value, direction) to the console or a file.

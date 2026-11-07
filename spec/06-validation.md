@@ -26,7 +26,7 @@ Each check lists the original's result (the baseline a replacement should reprod
 ## 6.3 Checks that need hardware or real software
 
 - **TEST-9** `MUST` `untested` `F6 F7` - **Real games on real hardware.** Doom, Duke Nukem 3D and Quake (DOS/4GW and its relatives, and Watcom-based extenders) start, play and exit with sound on a machine whose chipset has no D-DMA, under the TSR. The original's own results on this are recorded as inconclusive (F7).
-- **TEST-10** `MUST` `untested` `F6 F9` - **The warm-up symptom.** Following the protocol in Finding 6, check whether the first DMA use after load is unreliable and whether writing the slave's Master Clear at install (`LIFE-11`) changes that. The result decides `DEC-1`.
+- **TEST-10** `MUST` `untested` `F6 F9` - **The warm-up symptom.** Following the protocol in Finding 6, check whether the first DMA use after load is unreliable and whether writing the slave's Master Clear at install (`LIFE-11`) changes that. The result is evidence for `DEC-1`.
 - **TEST-11** `SHOULD` `untested` - **Other memory managers.** Repeat TEST-1 to TEST-7 under EMM386 and QEMM (`TRAP-12`).
 - **TEST-12** `SHOULD` `untested` - **Other extenders.** Run a program built with Causeway and with an extender that wants DPMI 1.0 (`DPMI-10`).
 - **TEST-13** `SHOULD` `untested` `F7` - **Quake.** The original's run of Quake crashed with an invalid-opcode fault under Jemm both before and after any change, apparently unrelated to DMA; a replacement should note whether it behaves the same.
