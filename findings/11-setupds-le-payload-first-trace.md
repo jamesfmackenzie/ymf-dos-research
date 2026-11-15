@@ -41,7 +41,7 @@ up legacy audio (`FUN_00015f7f`), and calls:
   — **pulses CRST (AC-link reset) and XRST (local-device reset)**.
 - `FUN_00013099`: staged writes to cfg `0x4A` (DS-1 Power Control) with delays
   (`FUN_0001f0fc`) between them — clears DMC, then DPLL0/1, then PSL/PSN power-save bits;
-  also writes `0x4E = 0` for certain revisions and sets `0x48 |= 4`.
+  also writes `0x4E = 0` for certain revisions and (on one branch only) sets `0x48 |= 4`. The full sequence is in Finding 22.
 
 So SETUPDS performs a **chip-level reset and clock/PLL bring-up** of the YMF724/744. The
 legacy block (OPL3 + SB Pro engine, PSL0) is exactly what these bits gate. `DSDMA.exe`

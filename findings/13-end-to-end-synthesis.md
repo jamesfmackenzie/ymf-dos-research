@@ -15,8 +15,9 @@ in the *non*-DSDMA branch; our patched copy sets it in both).
 1. Parse `ds.ini` (key map in Finding 12). Find the card (PCI B102), compute `DAT_9ffa`
    revision gating (0x10/0x12/0x20 = newer parts get extra I/O-base regs at cfg 0x60-0x66).
 2. If BAR0 unassigned, size and assign it (all-ones probe).
-3. Reset and clock bring-up: pulse CRST+XRST (cfg 0x48), then staged writes to DS-1 Power
-   Control (cfg 0x4A) with delays; for 0x10/0x12/0x20 revisions also `0x4E = 0`.
+3. Reset and clock bring-up: pulse CRST+XRST (cfg 0x48, only if bits 1:0 are not 0), then staged writes to DS-1
+   Power Control (cfg 0x4A, only if it is not 0) with delays; for 0x10/0x12/0x20 revisions also `0x4E = 0`.
+   The full sequence, in call order, is in Finding 22.
 4. Identify the **host chipset** (known IDs: 0x7100/7180/7190 Intel 430/440, 0x1543, 0x596 VIA,
    0x8, 0x2420 Intel ICH). **Ours is not in the list -> chipset id = 0.**
 5. Build and write the dword at card cfg `0x40` (Legacy Audio Control + Extended):

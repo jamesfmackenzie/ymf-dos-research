@@ -103,10 +103,11 @@ The individual questions the findings settle, as a lookup.
 | What does `setupds /s` do and when does it launch Dsdma? | Programs the card, then exit code 2 on an unknown chipset triggers `loadtsr.bat`. | 11-13 |
 | How are 8237 ports trapped? | VCPI host takeover, TSS I/O permission bitmap and a hooked #GP handler. | 15, 16 |
 | Do traps reach protected-mode games? | Not through VCPI clients. Dsdma is also a DPMI 0.9 host so extenders run under it. | 19-21 |
+| Exactly what does `setupds /s` write to the card, register by register? | Power-up, AC-link reset, native-block quiesce, microcode, legacy dword, mixers, tear-down. | 22 |
 | Alternatives (Jemm QPI, SBEMU) | Compared and analysed. | 17, 18 |
 
 ## Using this repo
-**Where to start.** Findings are in `findings/NN-*.md`, in the order they were made. Start with Finding 13 (end to end),
+**Where to start.** Findings are in `findings/NN-*.md`, in the order they were made. Start with Finding 13 (end to end), then 22 for the full `setupds` register sequence,
 then 15 (how the trap works) and 21 (the DPMI host). Later findings correct earlier ones, and the corrections are noted
 in both places. Claims are tagged **verified** (seen directly in disassembly or an observed run), **inferred**
 (reasoning only) or **not tested**.
