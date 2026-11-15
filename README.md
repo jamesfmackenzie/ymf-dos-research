@@ -127,14 +127,15 @@ findings means the maintainer's unpublished notes from the first real-hardware b
 
 ## What's next
 - **Spec (draft):** [`spec/`](spec/) is a behavioural specification for a replacement TSR (`OpenDSDMA`), derived from these
-  findings and the datasheets, with every requirement tagged verified, inferred or untested. It will be frozen and tagged
-  before any implementation starts.
+  findings and the datasheets, with every requirement tagged verified, inferred or untested. It stands alone and does not
+  refer to the research; [`spec-trace/TRACE.md`](spec-trace/TRACE.md) joins each requirement to its findings and experiments.
+  It will be frozen and tagged before any implementation starts.
 - **OpenDSDMA:** an open replacement, written in a separate repository from the spec only.
 - **Hardware validation** of the warm-up hypothesis and of the replacement.
 
 ## Licence
 - Written material (findings, docs, spec, READMEs, recorded results): [CC BY 4.0](LICENSE-docs.txt).
-- Code (harness, tools, test programs, scripts, `spec/check.py`): [MIT](LICENSE).
+- Code (harness, tools, test programs, scripts, `spec-trace/check.py`): [MIT](LICENSE).
 - The Yamaha software and datasheets are not included and remain the property of their owners. Short disassembly
   excerpts in `findings/excerpts/` are quoted for commentary and research.
 

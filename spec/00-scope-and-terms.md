@@ -10,7 +10,11 @@ The replacement ("OpenDSDMA") is that TSR. Its job, in one sentence: **make a DO
 controller for the Sound Blaster channel, in real mode, V86 mode or under a DOS extender, end up programming the card's
 slave registers, and leave every other DMA channel alone.**
 
-See the diagram in the [project README](../README.md#background-what-these-programs-are-for).
+```
+ Guest (game)                 OpenDSDMA (TSR)                          Card
+ writes 8237 ports ---fault--> decodes the access ---> slave registers (16 bytes at the slave base)
+ (DMA channel 1)               leaves other channels alone            moves the audio data itself
+```
 
 ## 0.2 Out of scope
 - Chipsets that already provide D-DMA or PC/PCI DMA. `setupds` programs those and the TSR is not loaded.
@@ -43,6 +47,6 @@ See the diagram in the [project README](../README.md#background-what-these-progr
 
 ## 0.5 Conventions
 - Hex numbers use an `h` suffix (`F390h`) in prose. Ports and PCI offsets are for the card and the PC, not internals of any program.
-- "Observed" means the behaviour of the original, as established by the findings.
+- "Observed" means the behaviour of the original, as established by the research behind this spec.
 - A requirement that says "as the original" is a compatibility requirement, not a recommendation to copy anything else.
 - The requirement format and evidence tags are defined in [`README.md`](README.md).

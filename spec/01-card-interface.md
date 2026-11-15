@@ -2,25 +2,25 @@
 
 How the TSR finds the card, which PCI configuration registers it writes, and how the slave registers are laid out. Register
 meanings are from the YMF724F datasheet (DS-Y); the sequence and values are what the original does and what the emulator
-runs observed (E16).
+runs observed (chapter 6).
 
 ## 1.1 Finding the card
 
-- **HW-1** `MUST` `verified` `F5 F16` - Check for a PCI BIOS with INT 1Ah, AX=B101h (signature `PCI ` in EDX) and use the PCI BIOS read/write configuration functions (B108-B10Dh). The original does this itself and does not rely on `setupds` having done it.
-- **HW-2** `MUST` `verified` `F5 F16 F22` - Find the card with INT 1Ah, AX=B102h for vendor `1073h`, device `000Dh` (YMF724F). Only this ID has been exercised: the stub PCI BIOS reports it, and a real YMF724F (revision 03h) reports it too.
-- **HW-3** `SHOULD` `untested` `F5` - Also accept other YMF7xx family devices (YMF724, 740, 744, 754) once their configuration registers have been checked against the datasheets. The original compares the device ID and revision with a small set of values it does not document; which IDs those are has not been established.
-- **HW-4** `MUST` `inferred` `F5` - If there is no PCI BIOS or no matching card, do not install, print a message and return a nonzero exit code. The original has an error path that returns failure; its message and code were not captured.
+- **HW-1** `MUST` `verified` - Check for a PCI BIOS with INT 1Ah, AX=B101h (signature `PCI ` in EDX) and use the PCI BIOS read/write configuration functions (B108-B10Dh). The original does this itself and does not rely on `setupds` having done it.
+- **HW-2** `MUST` `verified` - Find the card with INT 1Ah, AX=B102h for vendor `1073h`, device `000Dh` (YMF724F). Only this ID has been exercised: the stub PCI BIOS reports it, and a real YMF724F (revision 03h) reports it too.
+- **HW-3** `SHOULD` `untested` - Also accept other YMF7xx family devices (YMF724, 740, 744, 754) once their configuration registers have been checked against the datasheets. The original compares the device ID and revision with a small set of values it does not document; which IDs those are has not been established.
+- **HW-4** `MUST` `inferred` - If there is no PCI BIOS or no matching card, do not install, print a message and return a nonzero exit code. The original has an error path that returns failure; its message and code were not captured.
 
 ## 1.2 PCI configuration the TSR writes
 
 Offsets 40h and 42h are changed field by field: preserve every other bit (in particular the interrupt mode set by `setupds`). Offset 4Ch is different: the original writes it whole, from a stored base value, without reading it first (`HW-7`).
 
-- **HW-5** `MUST` `verified` `F5 E16 DS-Y` - **Legacy Audio Control (offset 40h)**: make sure `SBEN` (bit 0) is set and the `SDMA` field (bits 7:6) holds the Sound Blaster DMA channel (default 1). The original reads the register first and tests bit 0; in E16 the stub's default is `907Fh` (SBEN set, channel 1) and the original writes nothing to offset 40h, so the write is evidently conditional (`inferred`). A replacement may write unconditionally or only when a change is needed.
-- **HW-6** `MUST` `verified` `F5 F13 F16 DS-Y` - **Extended Legacy Audio Control (offset 42h, word)**: read it, set `SMOD` (bits 12:11) to `10b`, which selects Distributed DMA, and set `SBIO` (bits 3:2) to the Sound Blaster base: 220h = 0, 240h = 4, 260h = 8, 280h = Ch. Leave every other bit as read. Observed result (`verified`): with a stub that reads the register as 0000h, the written value is `1000h`. That is an artefact of the stub. On a real card `setupds /s` has already set `SMOD` to `11b` and `IMOD` to 1 (42h = `9800h`), so the expected value after the TSR is `9000h` (`inferred`: derived from the card's state after `setupds`, not measured with the TSR).
-- **HW-7** `MUST` `verified` `F5 F16 DS-Y` - **D-DMA Slave Configuration (offset 4Ch, word)**: write the slave base with its low four bits cleared, with bit 0 (`CE`, channel enable) set. This is a plain write of the whole register: the original does not read it first, so any other contents are replaced. With the default base `F390h` the register reads back `F391h` (observed). This is the write that turns D-DMA on.
-- **HW-8** `MAY` `verified` `F5` - Read the Interrupt Line register (offset 3Ch, byte) after the writes above. The original does this and stores the result, which lets it learn the card's interrupt without relying on a separate tool such as `YMFIRQ.exe`. What it then uses the value for was not established, so a replacement needs the read only if it uses the interrupt itself.
-- **HW-9** `MUST` `verified` `F5` - Perform the configuration in the order 40h (if needed), 42h, 4Ch (then the read of 3Ch, if made) before the first trapped access can be forwarded to the slave (see `LIFE-7`).
-- **HW-10** `MUST` `inferred` `F13 F14` - Do not touch any other configuration register, in particular the interrupt mode (`IMOD`, 42h bit 15), the power and reset registers (48h, 4Ah, 4Eh) or the legacy I/O decodes, all of which `setupds` owns.
+- **HW-5** `MUST` `verified` `DS-Y` - **Legacy Audio Control (offset 40h)**: make sure `SBEN` (bit 0) is set and the `SDMA` field (bits 7:6) holds the Sound Blaster DMA channel (default 1). The original reads the register first and tests bit 0; in the emulator run the stub's default is `907Fh` (SBEN set, channel 1) and the original writes nothing to offset 40h, so the write is evidently conditional (`inferred`). A replacement may write unconditionally or only when a change is needed.
+- **HW-6** `MUST` `verified` `DS-Y` - **Extended Legacy Audio Control (offset 42h, word)**: read it, set `SMOD` (bits 12:11) to `10b`, which selects Distributed DMA, and set `SBIO` (bits 3:2) to the Sound Blaster base: 220h = 0, 240h = 4, 260h = 8, 280h = Ch. Leave every other bit as read. Observed result (`verified`): with a stub that reads the register as 0000h, the written value is `1000h`. That is an artefact of the stub. On a real card `setupds /s` has already set `SMOD` to `11b` and `IMOD` to 1 (42h = `9800h`), so the expected value after the TSR is `9000h` (`inferred`: derived from the card's state after `setupds`, not measured with the TSR).
+- **HW-7** `MUST` `verified` `DS-Y` - **D-DMA Slave Configuration (offset 4Ch, word)**: write the slave base with its low four bits cleared, with bit 0 (`CE`, channel enable) set. This is a plain write of the whole register: the original does not read it first, so any other contents are replaced. With the default base `F390h` the register reads back `F391h` (observed). This is the write that turns D-DMA on.
+- **HW-8** `MAY` `verified` - Read the Interrupt Line register (offset 3Ch, byte) after the writes above. The original does this and stores the result, which lets it learn the card's interrupt without relying on a separate tool such as `YMFIRQ.exe`. What it then uses the value for was not established, so a replacement needs the read only if it uses the interrupt itself.
+- **HW-9** `MUST` `verified` - Perform the configuration in the order 40h (if needed), 42h, 4Ch (then the read of 3Ch, if made) before the first trapped access can be forwarded to the slave (see `LIFE-7`).
+- **HW-10** `MUST` `inferred` - Do not touch any other configuration register, in particular the interrupt mode (`IMOD`, 42h bit 15), the power and reset registers (48h, 4Ah, 4Eh) or the legacy I/O decodes, all of which `setupds` owns.
 
 ## 1.3 Slave register layout
 
@@ -41,10 +41,10 @@ from the chipset side. Offsets are from the slave base.
 | +Dh | Master Clear (write) | 0D | **No, never written** |
 | +Fh | Write All Masks | 0A, 0E, 0F | Yes (see `EMU-12`) |
 
-- **HW-11** `MUST` `verified` `F1 F2 F4 DS-I` - Use exactly these offsets for the registers in the "Yes" rows. They match the datasheet table offset for offset.
-- **HW-12** `MUST` `verified` `F2 F4` - Read the 16-bit **current word count** so that a count changing between the two byte reads cannot produce a torn value: read high then low twice and keep the pair that did not roll over between reads. The original does this; a single naive read can return a torn value while the card is transferring.
-- **HW-13** `MUST` `verified` `F4` - Write address and count low byte first, then high byte.
-- **HW-14** `MAY` `untested` `F2 F6 DS-I` - Write **Master Clear (+Dh)** to the slave. The original never does, at install time or when the guest writes the 8237 master-clear port. Whether adding it fixes the unreliable first DMA after load is the open question (`DEC-1`).
-- **HW-15** `MAY` `untested` `F2 DS-I` - Write **Request (+9)**. The original never does. A Sound Blaster does not use software DMA requests, so there is no known reason to.
-- **HW-16** `MUST` `inferred` `F5 F6 DS-Y` - **Slave base.** The base written to 4Ch has its low four bits clear, so it is 16-byte aligned, and the slave occupies the 16 bytes from it (offsets 0 to Fh). It must not overlap the I/O range of any other device in the machine. Only the default `F390h` has been run; whether the card accepts other bases is untested.
-- **HW-17** `MUST` `inferred` `F4` - Access the slave with byte-wide port I/O, one register at a time, as the original does. Word or doubleword access to the slave has not been tried and the datasheet does not say it is supported.
+- **HW-11** `MUST` `verified` `DS-I` - Use exactly these offsets for the registers in the "Yes" rows. They match the datasheet table offset for offset.
+- **HW-12** `MUST` `verified` - Read the 16-bit **current word count** so that a count changing between the two byte reads cannot produce a torn value: read high then low twice and keep the pair that did not roll over between reads. The original does this; a single naive read can return a torn value while the card is transferring.
+- **HW-13** `MUST` `verified` - Write address and count low byte first, then high byte.
+- **HW-14** `MAY` `untested` `DS-I` - Write **Master Clear (+Dh)** to the slave. The original never does, at install time or when the guest writes the 8237 master-clear port. Whether adding it fixes the unreliable first DMA after load is the open question (`DEC-1`).
+- **HW-15** `MAY` `untested` `DS-I` - Write **Request (+9)**. The original never does. A Sound Blaster does not use software DMA requests, so there is no known reason to.
+- **HW-16** `MUST` `inferred` `DS-Y` - **Slave base.** The base written to 4Ch has its low four bits clear, so it is 16-byte aligned, and the slave occupies the 16 bytes from it (offsets 0 to Fh). It must not overlap the I/O range of any other device in the machine. Only the default `F390h` has been run; whether the card accepts other bases is untested.
+- **HW-17** `MUST` `inferred` - Access the slave with byte-wide port I/O, one register at a time, as the original does. Word or doubleword access to the slave has not been tried and the datasheet does not say it is supported.
