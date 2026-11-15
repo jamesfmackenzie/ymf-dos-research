@@ -17,7 +17,7 @@ See the diagram in the [project README](../README.md#background-what-these-progr
 - Emulating a Sound Blaster, OPL3 or MPU-401 in software. The card's own hardware does that.
 - Windows, WDM or any non-DOS environment.
 - Moving audio data. In D-DMA the peripheral is the bus master and moves the data itself (DS-I section 8.5.2).
-- Supporting cards other than the YMF724/744 family (see `HW-3`).
+- Supporting cards other than the YMF724/744 family (see `HW-3`). The only card exercised is a YMF724F; the 744 and 754 are covered by the datasheets but were not run.
 
 ## 0.3 Who does what
 
@@ -37,6 +37,9 @@ See the diagram in the [project README](../README.md#background-what-these-progr
 - **Trap**: making an I/O instruction raise a CPU fault instead of reaching hardware (via the I/O permission bitmap in V86 or ring-3 code).
 - **VCPI / DPMI**: the two DOS interfaces for 32-bit protected-mode programs. VCPI runs the client with full privilege next to the memory manager; DPMI runs it at ring 3 under a host.
 - **Original**: Yamaha's `Dsdma.exe` version 1.00 as shipped in the YMF744 DOS driver package.
+- **Guest**: any program running under the TSR's control whose DMA-port accesses are intercepted (a DOS program in real mode, V86 mode or under a DOS extender).
+- **Stub PCI BIOS**: a test fixture that answers the PCI BIOS calls (INT 1Ah) as if a YMF724F were present, so a TSR can install on a machine or emulator that has no such card. It does not emulate the card's slave registers.
+- **QPIEMU**: Jemm's optional driver that lets a program register callbacks for I/O-port accesses; used here only to check that the TSR coexists with it.
 
 ## 0.5 Conventions
 - Hex numbers use an `h` suffix (`F390h`) in prose. Ports and PCI offsets are for the card and the PC, not internals of any program.
