@@ -21,7 +21,7 @@ slave registers, and leave every other DMA channel alone.**
 - Emulating a Sound Blaster, OPL3 or MPU-401 in software. The card's own hardware does that.
 - Windows, WDM or any non-DOS environment.
 - Moving audio data. In D-DMA the peripheral is the bus master and moves the data itself (DS-I section 8.5.2).
-- Supporting cards other than the YMF724/744 family (see `HW-3`). The only card exercised is a YMF724F; the 744 and 754 are covered by the datasheets but were not run.
+- Supporting cards other than the YMF7xx family (see `HW-3`). The only card exercised is a YMF724F; the other family members are covered by the datasheets but were not run.
 
 ## 0.3 Who does what
 
@@ -42,11 +42,12 @@ slave registers, and leave every other DMA channel alone.**
 - **VCPI / DPMI**: the two DOS interfaces for 32-bit protected-mode programs. VCPI runs the client with full privilege next to the memory manager; DPMI runs it at ring 3 under a host.
 - **Original**: Yamaha's `Dsdma.exe` version 1.00 as shipped in the YMF744 DOS driver package.
 - **Guest**: any program running under the TSR's control whose DMA-port accesses are intercepted (a DOS program in real mode, V86 mode or under a DOS extender).
-- **Stub PCI BIOS**: a test fixture that answers the PCI BIOS calls (INT 1Ah) as if a YMF724F were present, so a TSR can install on a machine or emulator that has no such card. It does not emulate the card's slave registers.
+- **Stub PCI BIOS**: a test fixture that answers the PCI BIOS calls (INT 1Ah) as if a YMF724F were present, so a TSR can install on a machine or emulator that has no such card. It does not emulate the card's slave registers. Section 6.1 defines the one used for the baseline results.
+- **Unbacked slave**: nothing answers at the slave base, so reads of the slave registers return FFh (open bus).
 - **QPIEMU**: Jemm's optional driver that lets a program register callbacks for I/O-port accesses; used here only to check that the TSR coexists with it.
 
 ## 0.5 Conventions
 - Hex numbers use an `h` suffix (`F390h`) in prose. Ports and PCI offsets are for the card and the PC, not internals of any program.
-- "Observed" means the behaviour of the original, as established by the research behind this spec.
+- "Observed" means the behaviour of the original, as established when this spec was written.
 - A requirement that says "as the original" is a compatibility requirement, not a recommendation to copy anything else.
 - The requirement format and evidence tags are defined in [`README.md`](README.md).

@@ -5,7 +5,7 @@
 This is a specification for a replacement of Yamaha's `Dsdma.exe`: a DOS TSR that acts as a software Distributed DMA
 master for YMF724/744 sound cards. It says **what the replacement must do**, not how the original does it. It is written
 so that someone who has never seen the original program, and does not intend to, can build a compatible one from
-this folder, the YMF724F datasheet, the Intel PIIX4 datasheet and open-source references.
+this folder, the YMF724F datasheet, the Intel PIIX4 datasheet and the public material listed under "References you may use" below.
 
 This folder stands alone. It does not refer to the research that produced it, and nothing in it should send a reader there.
 
@@ -50,7 +50,12 @@ Each requirement is one line:
 
 ## Provenance
 
-The people who wrote this spec had read the original program's code; that is the reason for the rules above and for
-building the replacement in a separate repository, from this folder only. The history of this folder is the record of what
-the implementer was given. The link from each requirement to its evidence is kept outside this folder, in
-`spec-trace/` of the research repository.
+The authors of this spec had read the original program; that is the reason for the rules above and for building the
+replacement in a separate repository, from this folder only. The history of this folder is the record of what the
+implementer was given.
+
+## References you may use
+
+- The YMF724F datasheet (Yamaha) and the Intel 82371AB PIIX4 datasheet (its Distributed DMA section). In the requirements, `DS-Y` and `DS-I` refer to them.
+- The VCPI 1.0 and DPMI 0.9 specifications, and the Intel architecture manuals on V86 mode, the task state segment and the I/O permission bitmap.
+- Open-source code: Jemm (a VCPI memory manager) and the documentation of its QPI interface, HDPMI, SBEMU, VSBHDA, and the Linux `ymfpci` sound driver (for register names).

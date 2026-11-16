@@ -18,7 +18,7 @@ This file joins each requirement in [`../spec/`](../spec/) to the research that 
 | HW-6 | MUST | verified | [F5](../findings/05-init-sequence-and-dma-enable.md), [F13](../findings/13-end-to-end-synthesis.md), [F16](../findings/16-dosbox-x-dynamic-verification.md) | - | DS-Y | The 1000h result is a stub artefact. After `setupds /s` on a real YMF724F the dword at 40h is 9800_3F4Fh (F22, maintainer's unpublished dump), so 42h reads 9800h before the TSR and should read 9000h after. |
 | HW-7 | MUST | verified | [F5](../findings/05-init-sequence-and-dma-enable.md), [F16](../findings/16-dosbox-x-dynamic-verification.md) | - | DS-Y | Blind write: F5 shows `MOV CX,[base]; AND CX,FFF0h; OR CX,1; write 4Ch` with no read of 4Ch. |
 | HW-8 | MAY | verified | [F5](../findings/05-init-sequence-and-dma-enable.md) | - | - |  |
-| HW-9 | MUST | verified | [F5](../findings/05-init-sequence-and-dma-enable.md) | - | - |  |
+| HW-9 | MUST | inferred | [F5](../findings/05-init-sequence-and-dma-enable.md) | - | DS-Y | Tag lowered after the cold read: the order 42h, 4Ch, 3Ch is F5; the position of the 40h write and the "before the first forwarded access" part are not observed. |
 | HW-10 | MUST | inferred | [F13](../findings/13-end-to-end-synthesis.md), [F14](../findings/14-irq-path-pci-inta-and-elcr.md) | - | - |  |
 | HW-11 | MUST | verified | [F1](../findings/01-ndisasm-first-pass.md), [F2](../findings/02-comparison-vs-piix4-spec.md), [F4](../findings/04-ghidra-corroboration.md) | - | DS-I |  |
 | HW-12 | MUST | verified | [F2](../findings/02-comparison-vs-piix4-spec.md), [F4](../findings/04-ghidra-corroboration.md) | - | - |  |
@@ -54,24 +54,24 @@ This file joins each requirement in [`../spec/`](../spec/) to the research that 
 | TRAP-10 | MUST | verified | [F15](../findings/15-how-dsdma-traps-the-8237-ports.md), [F16](../findings/16-dosbox-x-dynamic-verification.md) | - | - |  |
 | TRAP-11 | MUST | inferred | [F15](../findings/15-how-dsdma-traps-the-8237-ports.md) | [E16](../experiments/16-trap-verification/) | - |  |
 | TRAP-12 | SHOULD | untested | [F20](../findings/20-real-extender-vs-dsdma-dpmi-host.md) | - | - |  |
-| DPMI-1 | MUST | verified | [F19](../findings/19-pm-client-io-trapping.md), [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | - | - |  |
+| DPMI-1 | MUST | verified | [F19](../findings/19-pm-client-io-trapping.md), [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | - | - | F21: per-client data is 16 KB (400h paragraphs). |
 | DPMI-2 | MUST | verified | [F19](../findings/19-pm-client-io-trapping.md) | [E19](../experiments/19-pm-client-trapping/) | - |  |
 | DPMI-3 | MUST | verified | [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | - | - |  |
 | DPMI-4 | MUST | verified | [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | [E20](../experiments/20-real-extenders/) | - |  |
 | DPMI-5 | SHOULD | verified | [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | - | - | F21: up to 16 nested clients, error 8010h. Nesting was not run. |
 | DPMI-6 | MUST | verified | [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | [E21](../experiments/21-dpmi-host-counters/) | - |  |
-| DPMI-7 | SHOULD | inferred | [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | - | - |  |
-| DPMI-8 | MUST | verified | [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | [E21](../experiments/21-dpmi-host-counters/) | - |  |
+| DPMI-7 | MAY | inferred | [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | - | - | Lowered from SHOULD so the spec does not pre-rank DEC-4. |
+| DPMI-8 | MUST | verified | [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | [E21](../experiments/21-dpmi-host-counters/) | - | F21 table: unknown functions return 8001h; 0B00-0B03 return 8016h/8023h. |
 | DPMI-9 | MAY | verified | [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | - | - |  |
-| DPMI-10 | SHOULD | untested | [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | - | - |  |
+| DPMI-10 | MAY | untested | [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | - | - | Lowered from SHOULD so the spec does not pre-rank DEC-4. 0E00 removed from the spec: unclear whether it is a 0.9 or 1.0 function; check against the DPMI specifications. |
 | DPMI-11 | MUST | verified | [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | - | - | F21: 0501 allocates through VCPI; release at client exit was not read. |
 | DPMI-12 | MAY | verified | [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | - | - |  |
 | DPMI-13 | MUST | verified | [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | - | - |  |
 | DPMI-14 | MUST | verified | [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | - | - |  |
 | DPMI-15 | MUST | inferred | [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | - | - | F21 lists IRQ reflection; software-interrupt routing is not stated there. |
-| DPMI-16 | SHOULD | inferred | [F15](../findings/15-how-dsdma-traps-the-8237-ports.md), [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | - | - |  |
+| DPMI-16 | MUST | inferred | [F15](../findings/15-how-dsdma-traps-the-8237-ports.md), [F21](../findings/21-dsdma-dpmi-host-anatomy.md) | - | - | Raised from SHOULD, conditional on ring-3 clients: without it a client executing CLI/STI crashes. |
 | LIFE-1 | MUST | verified | [F8](../findings/08-dsdma-never-reads-ds-ini.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
-| LIFE-2 | MUST | verified | [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
+| LIFE-2 | MUST | verified | [F13](../findings/13-end-to-end-synthesis.md) | - | - | Reworded after the cold read from an assumption into an obligation not to reset the card. |
 | LIFE-3 | MUST | verified | [F8](../findings/08-dsdma-never-reads-ds-ini.md), [F13](../findings/13-end-to-end-synthesis.md) | [E16](../experiments/16-trap-verification/) | - |  |
 | LIFE-4 | SHOULD | untested | [F5](../findings/05-init-sequence-and-dma-enable.md), [F8](../findings/08-dsdma-never-reads-ds-ini.md) | - | - |  |
 | LIFE-5 | MAY | untested | [F8](../findings/08-dsdma-never-reads-ds-ini.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
@@ -86,12 +86,12 @@ This file joins each requirement in [`../spec/`](../spec/) to the research that 
 | LIFE-14 | MAY | untested | - | - | - |  |
 | LIFE-15 | MAY | untested | - | - | - |  |
 | LIFE-16 | MAY | inferred | [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
-| TEST-1 | MUST | verified | - | [E16](../experiments/16-trap-verification/) | - | Stub: offset 40h reads 907Fh, 42h reads 0. |
+| TEST-1 | MUST | verified | - | [E16](../experiments/16-trap-verification/) | - | Stub: offset 40h reads 907Fh, 42h reads 0. Stub is harness/src/fakepci.asm: bus 0 device 0Bh function 0; 40h=907Fh, 3Ch=05h, 3Dh=01h, revision 03h. |
 | TEST-2 | MUST | verified | - | [E16](../experiments/16-trap-verification/) | - |  |
 | TEST-3 | MUST | verified | - | [E16](../experiments/16-trap-verification/) | - |  |
 | TEST-4 | MUST | verified | - | [E16](../experiments/16-trap-verification/) | - |  |
 | TEST-5 | MUST | verified | - | [E19](../experiments/19-pm-client-trapping/) | - |  |
-| TEST-6 | MUST | verified | - | [E20](../experiments/20-real-extenders/) | - |  |
+| TEST-6 | MUST | verified | - | [E20](../experiments/20-real-extenders/) | - | Probe sequence is the one in experiments/20-real-extenders/src/xt.c. |
 | TEST-7 | MUST | verified | - | [E21](../experiments/21-dpmi-host-counters/) | - |  |
 | TEST-8 | SHOULD | verified | - | [E17](../experiments/17-qpiemu-port-overlap/), [E20](../experiments/20-real-extenders/) | - |  |
 | TEST-9 | MUST | untested | [F6](../findings/06-real-hardware-master-clear-test-protocol.md), [F7](../findings/07-real-hardware-test-session-inconclusive.md) | - | - |  |
