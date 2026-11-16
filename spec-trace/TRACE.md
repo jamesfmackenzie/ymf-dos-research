@@ -79,12 +79,13 @@ This file joins each requirement in [`../spec/`](../spec/) to the research that 
 | LIFE-7 | MUST | inferred | [F5](../findings/05-init-sequence-and-dma-enable.md), [F16](../findings/16-dosbox-x-dynamic-verification.md) | - | - | F5/F16 show the configuration and the trap takeover but not their order relative to each other. |
 | LIFE-8 | MUST | verified | [F5](../findings/05-init-sequence-and-dma-enable.md), [F16](../findings/16-dosbox-x-dynamic-verification.md), [F13](../findings/13-end-to-end-synthesis.md) | [E16](../experiments/16-trap-verification/) | - |  |
 | LIFE-9 | MUST | inferred | [F5](../findings/05-init-sequence-and-dma-enable.md) | - | - |  |
-| LIFE-10 | SHOULD | untested | - | - | - |  |
-| LIFE-11 | MAY | untested | [F2](../findings/02-comparison-vs-piix4-spec.md), [F6](../findings/06-real-hardware-master-clear-test-protocol.md) | - | - |  |
-| LIFE-12 | MAY | untested | - | - | - |  |
+| LIFE-10 | SHOULD | untested | - | - | - | Split from LIFE-9 (a MUST with a SHOULD inside); a proposal, not seen in the original. |
+| LIFE-11 | SHOULD | untested | - | - | - |  |
+| LIFE-12 | MAY | untested | [F2](../findings/02-comparison-vs-piix4-spec.md), [F6](../findings/06-real-hardware-master-clear-test-protocol.md) | - | - |  |
 | LIFE-13 | MAY | untested | - | - | - |  |
 | LIFE-14 | MAY | untested | - | - | - |  |
-| LIFE-15 | MAY | inferred | [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
+| LIFE-15 | MAY | untested | - | - | - |  |
+| LIFE-16 | MAY | inferred | [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
 | TEST-1 | MUST | verified | - | [E16](../experiments/16-trap-verification/) | - | Stub: offset 40h reads 907Fh, 42h reads 0. |
 | TEST-2 | MUST | verified | - | [E16](../experiments/16-trap-verification/) | - |  |
 | TEST-3 | MUST | verified | - | [E16](../experiments/16-trap-verification/) | - |  |

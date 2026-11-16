@@ -18,20 +18,21 @@ code 2, and then runs the TSR with **no command line**. The replacement is a dro
 
 - **LIFE-7** `MUST` `inferred` - The card configuration (`HW-5` to `HW-7`, and the read of `HW-8` if made) must be complete before the first trapped access can reach the slave, since the slave does not exist until then. How the original orders the configuration against taking over the trap points was not established; the observed runs show only that both happen before it returns.
 - **LIFE-8** `MUST` `verified` - On success, stay resident with exit code 0 (observed in an emulator run with the original) and leave the DOS environment alone. A TSR cannot set `BLASTER` for its parent; the stock batch file sets it only in the branch that does not load the TSR, so users of the TSR branch must set it themselves.
-- **LIFE-9** `MUST` `inferred` - On failure (no PCI BIOS, no card, no VCPI, unsupported memory manager), print a clear message and exit with a nonzero code, leaving no half-installed traps. `SHOULD`: run every check that can fail before the first write to the card, so that a failure changes nothing. The original returns failure from its card-setup routine; the other failure paths were not exercised.
-- **LIFE-10** `SHOULD` `untested` - Detect a second copy of itself already resident and refuse to install again.
+- **LIFE-9** `MUST` `inferred` - On failure (no PCI BIOS, no card, no VCPI, unsupported memory manager), print a clear message and exit with a nonzero code, leaving no half-installed traps. The original returns failure from its card-setup routine; the other failure paths were not exercised.
+- **LIFE-10** `SHOULD` `untested` - Run every check that can fail (PCI BIOS, card search, VCPI and memory-manager support) before the first write to the card, so that a failure changes nothing on the machine. How the original orders these was not established (`LIFE-7`).
+- **LIFE-11** `SHOULD` `untested` - Detect a second copy of itself already resident and refuse to install again.
 
 ## 5.3 Optional improvements (new behaviour, none of it in the original)
 
 These are the improvements listed in the project roadmap. They are `MAY` and `untested` by definition.
 
-- **LIFE-11** `MAY` `untested` - Write the slave's **Master Clear** at install, and/or when the guest writes the 8237 master-clear port. Whether to do this, and whether it is fixed or configurable, is decision `DEC-1`.
-- **LIFE-12** `MAY` `untested` - A status command that reports whether the TSR is resident, the hooked channel, the slave base and the number of trapped accesses handled.
-- **LIFE-13** `MAY` `untested` - An unload command that restores the memory manager's tables and releases the memory (`TRAP-8`). The original cannot be unloaded.
-- **LIFE-14** `MAY` `untested` - A diagnostic mode that logs trapped accesses (port, value, direction) to the console or a file.
+- **LIFE-12** `MAY` `untested` - Write the slave's **Master Clear** at install, and/or when the guest writes the 8237 master-clear port. Whether to do this, and whether it is fixed or configurable, is decision `DEC-1`.
+- **LIFE-13** `MAY` `untested` - A status command that reports whether the TSR is resident, the hooked channel, the slave base and the number of trapped accesses handled.
+- **LIFE-14** `MAY` `untested` - An unload command that restores the memory manager's tables and releases the memory (`TRAP-8`). The original cannot be unloaded.
+- **LIFE-15** `MAY` `untested` - A diagnostic mode that logs trapped accesses (port, value, direction) to the console or a file.
 
 ## 5.4 Interaction with `setupds` that a user should know about
 
 These are properties of the original package, repeated here so the replacement's documentation can state them.
 
-- **LIFE-15** `MAY` `inferred` - Document that on a chipset `setupds` does not recognise, its own DMA self-test is expected to fail, because the card is not in D-DMA mode until the TSR loads (it leaves the DMA mode field at the reserved value). A failed self-test there does not by itself indicate a fault, and `setupds` does not change its exit code for it.
+- **LIFE-16** `MAY` `inferred` - Document that on a chipset `setupds` does not recognise, its own DMA self-test is expected to fail, because the card is not in D-DMA mode until the TSR loads (it leaves the DMA mode field at the reserved value). A failed self-test there does not by itself indicate a fault, and `setupds` does not change its exit code for it.
