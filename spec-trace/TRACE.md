@@ -100,6 +100,72 @@ This file joins each requirement in [`../spec/`](../spec/) to the research that 
 | TEST-12 | SHOULD | untested | - | - | - |  |
 | TEST-13 | SHOULD | untested | [F7](../findings/07-real-hardware-test-session-inconclusive.md) | - | - |  |
 
+## Requirements: card setup tool (`spec/setupds/`)
+
+| ID | Level | Tag | Findings | Experiments | Datasheet | Notes |
+|---|---|---|---|---|---|---|
+| SDS-1 | SHOULD | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - | Call order in the main routine; necessity of the order not established. |
+| SDS-2 | MUST | verified | [F11](../findings/11-setupds-le-payload-first-trace.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - |  |
+| SDS-3 | MUST | verified | [F11](../findings/11-setupds-le-payload-first-trace.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Path not exercised on hardware: the BIOS had assigned BAR0 already (cfg 04h = 0006h in the dump). Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
+| SDS-4 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - |  |
+| SDS-5 | MUST | verified | [F14](../findings/14-irq-path-pci-inta-and-elcr.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - |  |
+| SDS-6 | MUST | verified | [F14](../findings/14-irq-path-pci-inta-and-elcr.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Dump: 4D0h = 20h before and after. Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
+| SDS-7 | MAY | inferred | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Purpose not traced. |
+| SDS-8 | MUST | verified | [F11](../findings/11-setupds-le-payload-first-trace.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | DS-Y | Datasheet default 4Ah = 0000h; dump shows 4Ah unchanged. |
+| SDS-9 | MUST | verified | [F11](../findings/11-setupds-le-payload-first-trace.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Gate field inferred to be the PCI device ID. |
+| SDS-10 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Register names from Linux ymfpci.h; values from the decompile. |
+| SDS-11 | MUST | verified | [F11](../findings/11-setupds-le-payload-first-trace.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | DS-Y | Dump: 48h 0001h before, 0000h after. Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
+| SDS-12 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Dump: AC'97 26h = 000Fh after. Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
+| SDS-13 | MAY | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Destination offsets from an earlier trace; not re-checked. The images are not reproduced here. |
+| SDS-14 | MAY | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - |  |
+| SDS-15 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Dump: BAR0+114h = 0 after. Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
+| SDS-16 | MUST | verified | [F14](../findings/14-irq-path-pci-inta-and-elcr.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | DS-Y | Dump: low word 3F4Fh. Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
+| SDS-17 | MUST | verified | [F13](../findings/13-end-to-end-synthesis.md), [F14](../findings/14-irq-path-pci-inta-and-elcr.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | DS-Y | Dump: high word 9800h. Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
+| SDS-18 | MUST | inferred | [F14](../findings/14-irq-path-pci-inta-and-elcr.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Which settings byte drives the branch is not pinned down (F22 "Where 3F00h comes from"). |
+| SDS-19 | MUST | verified | [F13](../findings/13-end-to-end-synthesis.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Dump: 4Ch unchanged (0000h) after setupds. Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
+| SDS-20 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - |  |
+| SDS-21 | MUST | verified | [F13](../findings/13-end-to-end-synthesis.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - |  |
+| SDS-22 | MUST | inferred | [F13](../findings/13-end-to-end-synthesis.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Byte-to-key mapping not confirmed. |
+| SDS-23 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Dump: last codec command 18h = 0808h. Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
+| SDS-24 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - |  |
+| SDS-25 | SHOULD | verified | [F13](../findings/13-end-to-end-synthesis.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Bit meanings from F13. |
+| SDS-26 | MUST | inferred | [F13](../findings/13-end-to-end-synthesis.md) | - | - | Datasheet defines no behaviour for SMOD = 3. |
+| SDS-27 | MAY | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Probing behind the report not traced. |
+| SDS-28 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Dump: +108h and +114h = 0 after. Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
+| STEST-1 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
+| STEST-2 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
+| STEST-3 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - | Exit code 2 follows from the code; the batch file then loads the TSR. Not recorded as a separate hardware observation. |
+| STEST-4 | SHOULD | untested | - | - | - | Not run. |
+| STEST-5 | SHOULD | untested | - | - | - | Not run. |
+
+## Requirements: interaction (`spec/interaction/`)
+
+| ID | Level | Tag | Findings | Experiments | Datasheet | Notes |
+|---|---|---|---|---|---|---|
+| INT-1 | MUST | verified | [F5](../findings/05-init-sequence-and-dma-enable.md), [F13](../findings/13-end-to-end-synthesis.md), [F14](../findings/14-irq-path-pci-inta-and-elcr.md) | - | - | Ownership table is a synthesis of F5, F13, F14, F22. |
+| INT-2 | MUST | verified | [F13](../findings/13-end-to-end-synthesis.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
+| INT-3 | MUST | verified | [F5](../findings/05-init-sequence-and-dma-enable.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
+| INT-4 | MUST | verified | [F5](../findings/05-init-sequence-and-dma-enable.md), [F14](../findings/14-irq-path-pci-inta-and-elcr.md) | - | - |  |
+| INT-5 | MAY | inferred | [F5](../findings/05-init-sequence-and-dma-enable.md), [F14](../findings/14-irq-path-pci-inta-and-elcr.md) | - | - |  |
+| INT-6 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - | Stock batch file sets BLASTER only in the non-TSR branch. |
+| INT-7 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
+| INT-8 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - |  |
+| INT-9 | SHOULD | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | Not run on a recognised chipset. |
+| INT-10 | MUST | verified | [F5](../findings/05-init-sequence-and-dma-enable.md), [F8](../findings/08-dsdma-never-reads-ds-ini.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
+| INT-11 | MUST | inferred | [F8](../findings/08-dsdma-never-reads-ds-ini.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - | Not tested on hardware. |
+| INT-12 | MAY | untested | [F8](../findings/08-dsdma-never-reads-ds-ini.md) | - | - | Proposal. |
+| INT-13 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | Stock file read directly: 353 bytes, ASCII, CRLF. |
+| INT-14 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | FORCETSR absent from the stock file and reads as 0. |
+| INT-15 | MUST | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | Lookup order in the loader differs from the stock file order. |
+| INT-16 | MUST | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Stock LEGMAS 77 gives data byte FFh only if read as hexadecimal. |
+| INT-17 | MAY | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | The interactive path (F12 open item: the writer) was not traced. |
+| INT-18 | MAY | untested | - | - | - | Proposal. |
+| ITEST-1 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
+| ITEST-2 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
+| ITEST-3 | MUST | verified | [F5](../findings/05-init-sequence-and-dma-enable.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | High word 9800h to 9000h via AND E7FFh, OR 1000h (F22). |
+| ITEST-4 | SHOULD | untested | - | - | - | Not run. |
+| ITEST-5 | SHOULD | untested | - | - | - | Not run. |
+
 ## How to run the emulator checks
 
 These are the harness commands behind the `TEST-` checks (see [`../harness/README.md`](../harness/README.md)). They run the original; they are not meant to be pointed at a replacement without adapting them.
@@ -154,3 +220,11 @@ These describe how the original is built, not what a replacement must do, so the
 - A debug-register write during DPMI client setup, reason unknown: [F21](../findings/21-dsdma-dpmi-host-anatomy.md).
 - That the original pays a fault for every access to the trapped ports, including unhooked channels, and whether removing those traps changes anything (spec `EMU-15`): [F15](../findings/15-how-dsdma-traps-the-8237-ports.md), [F16](../findings/16-dosbox-x-dynamic-verification.md).
 - The decompile-level detail of how the card is brought up by `setupds /s`: [F22](../findings/22-setupds-card-bring-up-sequence.md).
+
+## Things about the setup tool and the settings file kept out of the specs
+
+- Function names, linear addresses and call graph of the setup tool (Finding 22 lists them); the specs give the observable writes and their order.
+- The host-chipset-specific helpers and the identifying device-ID list as a behaviour to reproduce (the list is named as an open question only; Finding 11 and 13).
+- The settings file's name (the specs call it "the settings file"). Its grammar is in `spec/interaction/` because the two tools interoperate through it; the key table comes from Finding 12 and the stock file read directly.
+- The hardware register dump behind `STEST-1`, `STEST-2` and `ITEST-1` comes from the maintainer's unpublished notes (see Finding 22), so those rows cannot be reproduced from this repo.
+- The microcode images and where they sit in the original program.

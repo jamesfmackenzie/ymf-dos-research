@@ -6,18 +6,18 @@ DMA. They offer **Distributed DMA (D-DMA)** instead: the card holds its own copy
 *slave*), and a *master* is supposed to redirect the CPU's accesses to the legacy 8237 ports to that slave. Intel's PIIX4
 and some other chipsets do this in hardware. Where the chipset does not, a TSR has to be the master, in software.
 
-The replacement ("OpenDSDMA") is that TSR. Its job, in one sentence: **make a DOS program that programs the PC's DMA
+A replacement for the original program is that TSR. Its job, in one sentence: **make a DOS program that programs the PC's DMA
 controller for the Sound Blaster channel, in real mode, V86 mode or under a DOS extender, end up programming the card's
 slave registers, and leave every other DMA channel alone.**
 
 ```
- Guest (game)                 OpenDSDMA (TSR)                          Card
+ Guest (game)                 DMA master (TSR)                          Card
  writes 8237 ports ---fault--> decodes the access ---> slave registers (16 bytes at the slave base)
  (DMA channel 1)               leaves other channels alone            moves the audio data itself
 ```
 
 ## 0.2 Out of scope
-- Chipsets that already provide D-DMA or PC/PCI DMA. `setupds` programs those and the TSR is not loaded.
+- Chipsets that already provide D-DMA or PC/PCI DMA. The card setup tool programs those and the TSR is not loaded (see the `interaction/` specification).
 - Emulating a Sound Blaster, OPL3 or MPU-401 in software. The card's own hardware does that.
 - Windows, WDM or any non-DOS environment.
 - Moving audio data. In D-DMA the peripheral is the bus master and moves the data itself (DS-I section 8.5.2).
@@ -28,8 +28,8 @@ slave registers, and leave every other DMA channel alone.**
 | Component | Role |
 |---|---|
 | Game / Sound Blaster driver | Programs the DMA controller (ports 00-0F, 81-8B, C0-DE) and the Sound Blaster at its I/O base |
-| `setupds` (Yamaha, unchanged) | Configures the card (legacy audio block, interrupts, power), runs a self-test, and exits with code 2 on a chipset it does not recognise so that the batch file loads the TSR |
-| **OpenDSDMA** | Switches the card to D-DMA mode, enables the slave, then intercepts the DMA port accesses and forwards them to the slave |
+| Card setup tool (the `setupds/` specification) | Configures the card (legacy audio block, interrupts, power), runs a self-test, and exits with code 2 on a chipset it does not recognise so that the boot batch file loads the TSR. Who owns which part of the card is in the `interaction/` specification |
+| **The TSR** (this specification) | Switches the card to D-DMA mode, enables the slave, then intercepts the DMA port accesses and forwards them to the slave |
 | Memory manager (EMM386, Jemm, QEMM) | Provides V86 mode, extended memory and (in the original design) VCPI |
 | Card | Implements the slave registers, the Sound Blaster block and bus-master data movement |
 
@@ -40,7 +40,7 @@ slave registers, and leave every other DMA channel alone.**
 - **Slave base**: the I/O address at which the card's slave registers appear. Default `F390h`.
 - **Trap**: making an I/O instruction raise a CPU fault instead of reaching hardware (via the I/O permission bitmap in V86 or ring-3 code).
 - **VCPI / DPMI**: the two DOS interfaces for 32-bit protected-mode programs. VCPI runs the client with full privilege next to the memory manager; DPMI runs it at ring 3 under a host.
-- **Original**: Yamaha's `Dsdma.exe` version 1.00 as shipped in the YMF744 DOS driver package.
+- **Original**: the vendor's TSR, `Dsdma.exe` version 1.00 as shipped in the YMF744 DOS driver package.
 - **Guest**: any program running under the TSR's control whose DMA-port accesses are intercepted (a DOS program in real mode, V86 mode or under a DOS extender).
 - **Stub PCI BIOS**: a test fixture that answers the PCI BIOS calls (INT 1Ah) as if a YMF724F were present, so a TSR can install on a machine or emulator that has no such card. It does not emulate the card's slave registers. Section 6.1 defines the one used for the baseline results.
 - **Unbacked slave**: nothing answers at the slave base, so reads of the slave registers return FFh (open bus).
@@ -50,4 +50,4 @@ slave registers, and leave every other DMA channel alone.**
 - Hex numbers use an `h` suffix (`F390h`) in prose. Ports and PCI offsets are for the card and the PC, not internals of any program.
 - "Observed" means the behaviour of the original, as established when this spec was written.
 - A requirement that says "as the original" is a compatibility requirement, not a recommendation to copy anything else.
-- The requirement format and evidence tags are defined in [`README.md`](README.md).
+- The requirement format and evidence tags are defined in the top-level specification README (`spec/README.md`).

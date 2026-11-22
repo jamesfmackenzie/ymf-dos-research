@@ -115,7 +115,7 @@ in both places. Claims are tagged **verified** (seen directly in disassembly or 
 **Reproducing the results.** Dynamic checks used DOSBox-X, FreeDOS 1.3 and Jemm; see `harness/README.md` and
 `experiments/README.md`. The D-DMA slave itself is not emulated there, so register-level behaviour of the card is
 only confirmed from the datasheets and the static analysis. `docs/reproducing.md` explains how to regenerate everything
-that is not shipped, and `docs/roadmap.md` has status, open questions and next steps. "The earlier notes" in some
+that is not shipped, and `docs/status.md` has what is established and what is open. "The earlier notes" in some
 findings means the maintainer's unpublished notes from the first real-hardware bring-up of the same card.
 
 **What is and is not in this repo.**
@@ -125,13 +125,18 @@ findings means the maintainer's unpublished notes from the first real-hardware b
   hash-check the driver package, and see `docs/datasheets.md` for the PDFs.
 - Full disassembly listings are not shipped. `tools/regen-listings.sh` rebuilds them from the fetched binary with `ndisasm`.
 
-## What's next
-- **Spec (draft):** [`spec/`](spec/) is a behavioural specification for a replacement TSR (`OpenDSDMA`), derived from these
-  findings and the datasheets, with every requirement tagged verified, inferred or untested. It stands alone and does not
-  refer to the research; [`spec-trace/TRACE.md`](spec-trace/TRACE.md) joins each requirement to its findings and experiments.
-  It will be frozen and tagged before any implementation starts.
-- **OpenDSDMA:** an open replacement, written in a separate repository from the spec only.
-- **Hardware validation** of the warm-up hypothesis and of the replacement.
+## Specifications
+[`spec/`](spec/) holds behavioural specifications of the vendor's two DOS programs and of how they interact, derived from these
+findings and the datasheets. Every requirement is tagged verified, inferred or untested. They stand alone and do not refer to
+the research; [`spec-trace/TRACE.md`](spec-trace/TRACE.md) joins each requirement to its findings and experiments.
+
+- [`spec/dsdma/`](spec/dsdma/): the DMA master TSR (`Dsdma.exe`).
+- [`spec/setupds/`](spec/setupds/): the card setup tool (`setupds.exe`), silent-apply mode on a YMF724F only.
+- [`spec/interaction/`](spec/interaction/): who owns what, the state at the hand-over, the exit codes and the settings-file grammar.
+
+**Open:** the interactive mode of the setup tool, other YMF7xx family members, the card's interrupt-reporting tool and the demo
+player in the package are not covered. Whether a missing Master Clear explains the "first DMA after load is unreliable"
+symptom is untested; it needs a clean run of the hardware protocol in Finding 6.
 
 ## Licence
 - Written material (findings, docs, spec, READMEs, recorded results): [CC BY 4.0](LICENSE-docs.txt).

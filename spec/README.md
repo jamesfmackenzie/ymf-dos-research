@@ -1,27 +1,27 @@
-# OpenDSDMA behavioural specification
+# Behavioural specifications: Yamaha YMF724 DOS bring-up
 
-**Status: draft, not yet tagged.** The plan is to freeze it as tag `spec-v1` after review, before any implementation starts.
+**Status: draft, not yet tagged.**
 
-This is a specification for a replacement of Yamaha's `Dsdma.exe`: a DOS TSR that acts as a software Distributed DMA
-master for YMF724/744 sound cards. It says **what the replacement must do**, not how the original does it. It is written
-so that someone who has never seen the original program, and does not intend to, can build a compatible one from
-this folder, the YMF724F datasheet, the Intel PIIX4 datasheet and the public material listed under "References you may use" below.
+Three specifications describe what a DOS machine needs to make a Yamaha YMF724-family sound card work as a Sound Blaster when the
+host chipset has no distributed DMA of its own. They say **what a replacement must do**, not how the original does it, so that
+someone who has never seen the original programs can build a compatible one from these folders, the datasheets and the public
+material listed below.
 
-This folder stands alone. It does not refer to the research that produced it, and nothing in it should send a reader there.
-
-## How to read it
-
-| File | Covers |
+| Folder | Covers |
 |---|---|
-| [`00-scope-and-terms.md`](00-scope-and-terms.md) | What the replacement is for, what it is not, who does what, vocabulary, how requirements are written |
-| [`01-card-interface.md`](01-card-interface.md) | `HW-`: finding the card, the PCI configuration it needs, the slave register layout |
-| [`02-dma-emulation.md`](02-dma-emulation.md) | `EMU-`: which 8237 ports are emulated and how each one behaves |
-| [`03-trap-mechanism.md`](03-trap-mechanism.md) | `TRAP-`: what must be intercepted, for which kinds of programs, and how to coexist with a memory manager |
-| [`04-dpmi-host.md`](04-dpmi-host.md) | `DPMI-`: the DPMI host a trap-based design must provide, down to the INT 31h functions |
-| [`05-lifecycle.md`](05-lifecycle.md) | `LIFE-`: installation order, defaults, exit codes, relation to `setupds`, optional improvements |
-| [`06-validation.md`](06-validation.md) | `TEST-`: acceptance checks, each with inputs and the original's expected results |
-| [`07-open-questions.md`](07-open-questions.md) | What is not known, and the decisions an implementer has to make |
+| [`dsdma/`](dsdma/) | The DMA master TSR: finding the card, the PCI configuration, emulating the 8237 ports, the trap mechanism, the DPMI host, lifecycle, validation, open questions. Prefixes `HW-`, `EMU-`, `TRAP-`, `DPMI-`, `LIFE-`, `TEST-`, `DEC-` |
+| [`setupds/`](setupds/) | The card setup tool, silent-apply mode on a YMF724F only: bring-up sequence, legacy configuration, mixers, self-test, tear-down. Prefixes `SDS-`, `STEST-`, `SDEC-` |
+| [`interaction/`](interaction/) | The contract between the two: ownership, the state at the hand-over, exit codes and boot flow, and the settings-file grammar. Prefixes `INT-`, `ITEST-`, `IDEC-` |
 | [`INDEX.md`](INDEX.md) | Every requirement in one table (generated) |
+
+Each folder has numbered chapters. Chapter 0 says what is in and out of scope and defines terms; the last chapter lists open
+questions and the decisions an implementer must make. The `interaction/` specification refers to neither of the others; each of
+the others refers to it. Any pairing works: a new setup tool with the original TSR, or the reverse.
+
+**Not covered anywhere yet:** the setup tool's interactive mode, other YMF7xx family members, the vendor's interrupt-reporting tool
+and the demo player shipped in the same package.
+
+These folders stand alone. They do not refer to the research that produced them, and nothing in them should send a reader there.
 
 ## Requirement format
 
@@ -40,19 +40,17 @@ Each requirement is one line:
 
 ## What is deliberately not in here
 
-- No code, disassembly or internal addresses of `Dsdma.exe`. Where the original's behaviour matters, the spec states the
+- No code, disassembly or internal addresses of the original programs. Where the original's behaviour matters, the spec states the
   behaviour a program can observe (a register value, a return code, a port result), not how it is produced.
-- No message text, banners or file layouts copied from the original.
+- No message text or banners copied from the original. The settings-file grammar is specified because the two programs interoperate through it; the file's name is not.
 - No claim about the cause of the "first DMA after load is unreliable" symptom. That stays an open hypothesis
-  (decision `DEC-1`).
-- No references to the research behind it: no numbered notes, no links, no test scripts. Each test in
-  chapter 6 is stated as inputs and expected observable results.
+  (decision `DEC-1` in `dsdma/`, and the open questions of `interaction/`).
+- No references to the research behind it: no numbered notes, no links, no test scripts. Each check is stated as inputs and expected observable results.
 
 ## Provenance
 
-The authors of this spec had read the original program; that is the reason for the rules above and for building the
-replacement in a separate repository, from this folder only. The history of this folder is the record of what the
-implementer was given.
+The authors of these specifications had read the original programs; that is the reason for the rules above. The history of
+this folder is the record of what an implementer was given.
 
 ## References you may use
 

@@ -1,4 +1,4 @@
-# Status and roadmap
+# Status
 
 ## What is established (see the findings for evidence and tags)
 - `Dsdma.exe` configures the card and acts as a D-DMA master by trapping 8237 DMA ports in
@@ -19,22 +19,11 @@
   (0x1934), the 'KESB' INT 2Fh debug interface, and a debug-register write (0x27ED).
 - Why loading Dsdma and then QPIEMU makes a V86 DMA probe hang (Finding 20).
 
-## Planned work
-1. **Behavioural spec** (`spec/`, draft written): requirements for a replacement TSR derived from the
-   findings and the chipset/card datasheets, with each requirement tagged verified, inferred
-   or untested. Frozen and tagged before any implementation starts.
-2. **OpenDSDMA**: an open-source replacement implemented from the spec only, in a separate
-   repository. Candidate improvements over the original: honour `ds.ini` or command-line
-   settings, explicit Master Clear, status and unload commands, diagnostics, more YMF PCI IDs.
-3. **Real-hardware validation** of the warm-up hypothesis and of the replacement.
-
-## Design directions for the replacement (not decided)
-- **Own DPMI host plus I/O-bitmap/#GP trap** (the pattern `Dsdma.exe` uses). The only
-  approach shown here to catch protected-mode games. Finding 21 lists the INT 31h subset
-  needed (about 25 functions measured with three extenders, plus a few extra for real games).
-- **HDPMI with its port-trap API**: untested here.
-- **Jemm QPI**: V86-only, useful for diagnostics; cannot coexist with `Dsdma.exe` on the same ports.
-- Design ideas (not code) may be borrowed from SBEMU/VSBHDA (GPL-2.0), see Finding 18.
+## Specifications
+`spec/` has three behavioural specifications: the DMA master TSR, the card setup tool (silent apply on a YMF724F only) and the
+interaction between them. `spec-trace/check.py` checks their format and that each requirement has evidence in the trace map.
+The interactive mode of the setup tool, other family members, and the vendor's interrupt-reporting tool and demo player are not
+covered yet. Real-hardware validation of the warm-up hypothesis is outstanding.
 
 ## Tools
 Static analysis: Ghidra, `ndisasm`. Dynamic: DOSBox-X with FreeDOS and Jemm. See
