@@ -4,7 +4,7 @@
 
 This is a specification for a replacement of the **card setup tool**: the DOS program that brings a Yamaha YMF724-family sound card from its power-on state to a working Sound Blaster-compatible state, and that decides whether a separate DMA master program has to be loaded afterwards. In the vendor's package it is `setupds.exe`.
 
-It describes one mode of the original: the **silent apply** mode (the `/s` command-line switch), on one card: a **YMF724F** with the vendor's stock settings. A replacement that does this and leaves the card in the state described here can be used in place of the original. It conforms if it implements the unrecognised-chipset path and treats every chipset as unrecognised, with the vendor's DMA master program or with a replacement for it (see the `interaction/` specification).
+It describes one mode of the original: the **silent apply** mode (the `/s` command-line switch), on one card: a **YMF724F** with the vendor's stock settings. A replacement that does this and leaves the card in the state described here can be used in place of the original. It conforms if it implements the unrecognised-chipset path and treats every chipset as unrecognised (valid only on hosts that have no distributed DMA of their own; on other hosts the TSR would be loaded on top of working hardware), with the vendor's DMA master program or with a replacement for it (see the `interaction/` specification).
 
 ## 0.2 What is covered, and what is not
 

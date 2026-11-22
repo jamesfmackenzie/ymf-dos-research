@@ -10,7 +10,7 @@ This chapter says how much of DPMI that takes. The original is a complete DPMI 0
 - **DPMI-1** `MUST` `verified` - Answer INT 2Fh AX=1687h as a DPMI host: AX=0; BX bit 0 set (32-bit programs supported); CL = processor type; DX = `005Ah` (version 0.90); SI = paragraphs of private data the program must provide per client (the original asks for 400h paragraphs, 16 KB); ES:DI = the real-mode entry point for the switch to protected mode. Also answer AX=1686h (running in protected mode).
 - **DPMI-2** `MUST` `verified` - Answer INT 67h AX=DE00h with AH=84h so that no later program sees VCPI (`TRAP-3`).
 - **DPMI-3** `MUST` `verified` - Ignore INT 31h calls made from V86 mode (return without effect). Only protected-mode clients use the API.
-- **DPMI-4** `MUST` `verified` - Run each client at ring 3 with its own descriptor table, so that its port I/O is governed by the I/O permission bitmap (`TRAP-2`). Hardware interrupts must reach the client's protected-mode handlers, and the virtual PIC bases the client sees are those of the memory manager (observed 08h and 70h): do not remap the PICs.
+- **DPMI-4** `MUST` `verified` - Run each client at ring 3 with its own descriptor table, with the I/O privilege level below the client's privilege level, so that its port I/O is governed by the I/O permission bitmap (`TRAP-2`). Hardware interrupts must reach the client's protected-mode handlers, and the virtual PIC bases the client sees are those of the memory manager (observed 08h and 70h): do not remap the PICs.
 - **DPMI-5** `SHOULD` `verified` - Support nesting: a DPMI client that executes another DPMI program (for example a game launching its setup program) should work. The original allows 16 nested clients and returns error 8010h beyond that. No test launched one DPMI program from another, so the need is inferred.
 
 ## 4.2 INT 31h functions
@@ -41,11 +41,11 @@ Table of functions with the evidence for each. **Used** = called by the named ex
 | 0500 | Get free memory information | **Used** (DOS/4GW) | full |
 | 0501 / 0502 | Allocate / free memory block | **Used** (0501: all three; 0502: DOS/4GW) | full |
 | 0503 | Resize memory block | Implemented | full |
-| 0600 / 0601 | Lock / unlock linear region | **Used** (0600: all three) | succeeds, does nothing |
+| 0600 / 0601 | Lock / unlock linear region | **Used**: 0600 (all three); 0601 Implemented | succeeds, does nothing |
 | 0602 / 0603 | Mark / relock real-mode region | Implemented | succeeds, does nothing |
 | 0604 | Get page size | Implemented | 1000h |
 | 0700 / 0701 | (reserved in 0.9: page demand hints) | n/a | error 8001h |
-| 0702 / 0703 | Mark page as demand-paging candidate / discard | **Used** (DOS/4GW) | succeeds, does nothing |
+| 0702 / 0703 | Mark page as demand-paging candidate / discard | **Used**: 0702 (DOS/4GW); 0703 Implemented | succeeds, does nothing |
 | 0800 | Map physical address range | Implemented | full |
 | 0900 / 0901 / 0902 | Virtual interrupt state | Implemented | full (changes the client's interrupt flag) |
 | 0A00 | Vendor-specific extension lookup | Called by DOS/4GW, **failure tolerated** | error 8001h |
@@ -69,4 +69,4 @@ Table of functions with the evidence for each. **Used** = called by the named ex
 ## 4.4 Interrupts
 
 - **DPMI-15** `MUST` `inferred` - Reflect hardware interrupts into the client's protected-mode handler (set with 0205), and software interrupts raised by a protected-mode client to the real-mode vector (set with 0201) unless the client has installed a protected-mode handler (0204). The original reflects hardware interrupts (read in its code); the software-interrupt routing is the DPMI 0.9 rule and was not read separately.
-- **DPMI-16** `MUST` `inferred` - In a design that runs clients at ring 3 (`DPMI-4`), emulate `CLI`, `STI` and moves to and from control and debug registers, since these instructions fault at ring 3 without full I/O privilege and a client that executes them would otherwise crash. The original's fault handler decodes them; the exact policy for each was not confirmed.
+- **DPMI-16** `MUST` `inferred` - In a design that runs clients at ring 3 (`DPMI-4`), emulate `CLI`, `STI` and moves to and from control and debug registers, since these instructions fault at ring 3 when the I/O privilege level is below 3 (the condition that also makes the bitmap apply) and a client that executes them would otherwise crash. The original's fault handler decodes them; the exact policy for each was not confirmed.

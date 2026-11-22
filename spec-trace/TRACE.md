@@ -149,17 +149,18 @@ This file joins each requirement in [`../spec/`](../spec/) to the research that 
 | INT-5 | MAY | inferred | [F5](../findings/05-init-sequence-and-dma-enable.md), [F14](../findings/14-irq-path-pci-inta-and-elcr.md) | - | - |  |
 | INT-6 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - | Stock batch file sets BLASTER only in the non-TSR branch. |
 | INT-7 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
-| INT-8 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - |  |
-| INT-9 | SHOULD | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | Not run on a recognised chipset. |
-| INT-10 | MUST | verified | [F5](../findings/05-init-sequence-and-dma-enable.md), [F8](../findings/08-dsdma-never-reads-ds-ini.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
-| INT-11 | MAY | inferred | [F8](../findings/08-dsdma-never-reads-ds-ini.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - | Not tested on hardware. |
-| INT-12 | MAY | untested | [F8](../findings/08-dsdma-never-reads-ds-ini.md) | - | - | Proposal. |
-| INT-13 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | Stock file read directly: 353 bytes, ASCII, CRLF. |
-| INT-14 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | FORCETSR absent from the stock file and reads as 0. |
-| INT-15 | SHOULD | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | Lookup order in the loader differs from the stock file order. |
-| INT-16 | SHOULD | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Stock LEGMAS 77 gives data byte FFh only if read as hexadecimal. |
-| INT-17 | MAY | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | The interactive path (F12 open item: the writer) was not traced. |
-| INT-18 | MAY | untested | - | - | - | Proposal. |
+| INT-8 | MUST | untested | - | - | - | New after the adversarial read: the original's failure exit codes were not established; this guards against a failure exiting 2. |
+| INT-9 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - |  |
+| INT-10 | SHOULD | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | Not run on a recognised chipset. |
+| INT-11 | MUST | verified | [F5](../findings/05-init-sequence-and-dma-enable.md), [F8](../findings/08-dsdma-never-reads-ds-ini.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
+| INT-12 | MAY | inferred | [F8](../findings/08-dsdma-never-reads-ds-ini.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - | Not tested on hardware. |
+| INT-13 | MAY | untested | [F8](../findings/08-dsdma-never-reads-ds-ini.md) | - | - | Proposal. |
+| INT-14 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | Stock file read directly: 353 bytes, ASCII, CRLF. |
+| INT-15 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | FORCETSR absent from the stock file and reads as 0. |
+| INT-16 | SHOULD | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | Lookup order in the loader differs from the stock file order. |
+| INT-17 | SHOULD | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Stock LEGMAS 77 gives data byte FFh only if read as hexadecimal. |
+| INT-18 | MAY | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | The interactive path (F12 open item: the writer) was not traced. |
+| INT-19 | MAY | untested | - | - | - | Proposal. |
 | ITEST-1 | SHOULD | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
 | ITEST-2 | SHOULD | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
 | ITEST-3 | MUST | inferred | [F5](../findings/05-init-sequence-and-dma-enable.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | High word 9800h to 9000h via AND E7FFh, OR 1000h (F22). |

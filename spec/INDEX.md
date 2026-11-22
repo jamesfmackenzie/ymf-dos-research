@@ -2,7 +2,7 @@
 
 *Generated file. Do not edit by hand.*
 
-145 requirements: 89 verified, 30 inferred, 26 untested.
+146 requirements: 89 verified, 30 inferred, 27 untested.
 
 | ID | Level | Evidence | Datasheet | Requirement | File |
 |---|---|---|---|---|---|
@@ -15,7 +15,7 @@
 | HW-7 | MUST | verified | DS-Y | **D-DMA Slave Configuration (offset 4Ch, word)**: write the slave base with its low four bits cleared, with bit 0 (`CE`, channel enable) set | [dsdma/01-card-interface.md](dsdma/01-card-interface.md) |
 | HW-8 | MAY | verified |  | Read the Interrupt Line register (offset 3Ch, byte) after the writes above | [dsdma/01-card-interface.md](dsdma/01-card-interface.md) |
 | HW-9 | MUST | inferred | DS-Y | Perform the configuration in the order 40h (if needed), 42h, 4Ch, then the read of 3Ch (if made), and finish it before the first trapped acc... | [dsdma/01-card-interface.md](dsdma/01-card-interface.md) |
-| HW-10 | MUST | inferred |  | Do not touch any other configuration register, in particular the interrupt mode (`IMOD`, 42h bit 15), the power and reset registers (48h, 4A... | [dsdma/01-card-interface.md](dsdma/01-card-interface.md) |
+| HW-10 | MUST | inferred |  | Change no configuration bit other than those of `HW-5` to `HW-7` (SMOD, the Sound Blaster enable, base and DMA channel fields, and offset 4C... | [dsdma/01-card-interface.md](dsdma/01-card-interface.md) |
 | HW-11 | MUST | verified | DS-I | Use exactly these offsets for the registers in the "Yes" rows | [dsdma/01-card-interface.md](dsdma/01-card-interface.md) |
 | HW-12 | MUST | verified |  | Read the 16-bit **current word count** so that a count changing between the two byte reads cannot produce a torn value: read high then low t... | [dsdma/01-card-interface.md](dsdma/01-card-interface.md) |
 | HW-13 | MUST | verified |  | Write address and count low byte first, then high byte | [dsdma/01-card-interface.md](dsdma/01-card-interface.md) |
@@ -53,7 +53,7 @@
 | DPMI-1 | MUST | verified |  | Answer INT 2Fh AX=1687h as a DPMI host: AX=0; BX bit 0 set (32-bit programs supported); CL = processor type; DX = `005Ah` (version 0.90); SI... | [dsdma/04-dpmi-host.md](dsdma/04-dpmi-host.md) |
 | DPMI-2 | MUST | verified |  | Answer INT 67h AX=DE00h with AH=84h so that no later program sees VCPI (`TRAP-3`) | [dsdma/04-dpmi-host.md](dsdma/04-dpmi-host.md) |
 | DPMI-3 | MUST | verified |  | Ignore INT 31h calls made from V86 mode (return without effect) | [dsdma/04-dpmi-host.md](dsdma/04-dpmi-host.md) |
-| DPMI-4 | MUST | verified |  | Run each client at ring 3 with its own descriptor table, so that its port I/O is governed by the I/O permission bitmap (`TRAP-2`) | [dsdma/04-dpmi-host.md](dsdma/04-dpmi-host.md) |
+| DPMI-4 | MUST | verified |  | Run each client at ring 3 with its own descriptor table, with the I/O privilege level below the client's privilege level, so that its port I... | [dsdma/04-dpmi-host.md](dsdma/04-dpmi-host.md) |
 | DPMI-5 | SHOULD | verified |  | Support nesting: a DPMI client that executes another DPMI program (for example a game launching its setup program) should work | [dsdma/04-dpmi-host.md](dsdma/04-dpmi-host.md) |
 | DPMI-6 | MUST | verified |  | Implement every function marked **Used** | [dsdma/04-dpmi-host.md](dsdma/04-dpmi-host.md) |
 | DPMI-7 | MAY | inferred |  | Also implement the functions marked **Implemented**: DOS-memory functions (0100-0102), resize (0503), physical mapping (0800) and virtual in... | [dsdma/04-dpmi-host.md](dsdma/04-dpmi-host.md) |
@@ -67,7 +67,7 @@
 | DPMI-15 | MUST | inferred |  | Reflect hardware interrupts into the client's protected-mode handler (set with 0205), and software interrupts raised by a protected-mode cli... | [dsdma/04-dpmi-host.md](dsdma/04-dpmi-host.md) |
 | DPMI-16 | MUST | inferred |  | In a design that runs clients at ring 3 (`DPMI-4`), emulate `CLI`, `STI` and moves to and from control and debug registers, since these inst... | [dsdma/04-dpmi-host.md](dsdma/04-dpmi-host.md) |
 | LIFE-1 | MUST | verified |  | Work when started with no arguments, taking its settings from the defaults in `LIFE-3` | [dsdma/05-lifecycle.md](dsdma/05-lifecycle.md) |
-| LIFE-2 | MUST | verified |  | Do not reset or power-cycle the card, and do not reprogram what the setup tool configured (the legacy audio block, clocks, interrupt routing... | [dsdma/05-lifecycle.md](dsdma/05-lifecycle.md) |
+| LIFE-2 | MUST | verified |  | Do not reset or power-cycle the card, and do not reprogram what the setup tool configured (clocks, interrupt routing and every legacy-block ... | [dsdma/05-lifecycle.md](dsdma/05-lifecycle.md) |
 | LIFE-3 | MUST | verified |  | Unless another source of settings is provided (`DEC-2`), use these defaults, which are the original's compiled-in values: Sound Blaster base... | [dsdma/05-lifecycle.md](dsdma/05-lifecycle.md) |
 | LIFE-4 | MAY | untested |  | Accept command-line overrides for the Sound Blaster base (220h, 240h, 260h, 280h), the DMA channel and the slave base | [dsdma/05-lifecycle.md](dsdma/05-lifecycle.md) |
 | LIFE-5 | MAY | untested |  | Instead of fixed defaults, read what the setup tool already programmed into the card's configuration (the Sound Blaster base and DMA channel... | [dsdma/05-lifecycle.md](dsdma/05-lifecycle.md) |
@@ -98,7 +98,7 @@
 | SDS-1 | SHOULD | verified |  | Perform the steps of sections 1.2 to 1.7 and chapter 2 in this order: card search; BAR0 assignment; interrupt routing; power-up; native engi... | [setupds/01-bring-up.md](setupds/01-bring-up.md) |
 | SDS-2 | MUST | verified |  | Find the card through the PCI BIOS (INT 1Ah, AX=B102h) by vendor and device ID | [setupds/01-bring-up.md](setupds/01-bring-up.md) |
 | SDS-3 | MUST | verified |  | If BAR0 (offset 10h) is zero, assign it: save the command register (offset 04h), clear its low three bits (I/O space, memory space, bus mast... | [setupds/01-bring-up.md](setupds/01-bring-up.md) |
-| SDS-4 | MUST | verified |  | Set the command register's memory-space and bus-master bits (04h /= 06h) for the duration of the setup, remembering the old value, and resto... | [setupds/01-bring-up.md](setupds/01-bring-up.md) |
+| SDS-4 | MUST | verified |  | Set the command register's memory-space and bus-master bits (04h /= 06h), remembering the value it held when this step runs (the value left ... | [setupds/01-bring-up.md](setupds/01-bring-up.md) |
 | SDS-5 | MUST | verified |  | Route the card's INTA# line to the PCI interrupt number given by the settings (the interaction specification's key table names it; stock: 5)... | [setupds/01-bring-up.md](setupds/01-bring-up.md) |
 | SDS-6 | MUST | verified |  | Make that interrupt level-triggered in the PC's edge/level control registers (ports 4D0h and 4D1h) by read-modify-write of the bit for the i... | [setupds/01-bring-up.md](setupds/01-bring-up.md) |
 | SDS-7 | MAY | inferred |  | Scan for free interrupts | [setupds/01-bring-up.md](setupds/01-bring-up.md) |
@@ -112,7 +112,7 @@
 | SDS-15 | MUST | verified |  | Leave the native engine stopped (BAR0+114h = 0) when the tool exits (`SDS-28`) | [setupds/01-bring-up.md](setupds/01-bring-up.md) |
 | SDS-16 | MUST | verified | DS-Y | **Low word = 3F4Fh.** The four enables (SBEN, FMEN, MPU, joystick) give 000Fh; the Sound Blaster DMA field set to channel 1 gives 0040h; and... | [setupds/02-legacy-config.md](setupds/02-legacy-config.md) |
 | SDS-17 | MUST | verified | DS-Y | **High word = 9800h.** The DMA mode field (SMOD, bits 12:11 of offset 42h) is 11b, a value the datasheet marks reserved, and the interrupt m... | [setupds/02-legacy-config.md](setupds/02-legacy-config.md) |
-| SDS-18 | SHOULD | inferred |  | Fill both interrupt fields with 7 when the settings select INTA# interrupts, and otherwise write the Sound Blaster and MPU interrupt selecti... | [setupds/02-legacy-config.md](setupds/02-legacy-config.md) |
+| SDS-18 | SHOULD | inferred |  | On an unrecognised chipset, fill both interrupt fields with 7 for every interrupt mode (legacy, INTA# or serialised, as set by the interrupt... | [setupds/02-legacy-config.md](setupds/02-legacy-config.md) |
 | SDS-19 | MUST | verified |  | On an **unrecognised chipset**, set SMOD to 3 and **do not write the D-DMA Slave Configuration register (offset 4Ch)**, leaving distributed ... | [setupds/02-legacy-config.md](setupds/02-legacy-config.md) |
 | SDS-20 | MUST | verified |  | Write the dword after the native engine quiesce and the codec wait, and before the mixers and the self-test | [setupds/02-legacy-config.md](setupds/02-legacy-config.md) |
 | SDS-21 | MUST | verified |  | **Sound Blaster mixer**, only when the Sound Blaster base selector is below 4: through the Sound Blaster mixer index and data ports (base+4 ... | [setupds/02-legacy-config.md](setupds/02-legacy-config.md) |
@@ -128,24 +128,25 @@
 | STEST-3 | SHOULD | verified |  | **Exit code.** The tool exits 2 (`interaction/`), and the vendor's boot batch file therefore loads the DMA master program | [setupds/03-validation.md](setupds/03-validation.md) |
 | STEST-4 | SHOULD | untested |  | **Repeat run.** Running the tool a second time without a power cycle leaves the same end state | [setupds/03-validation.md](setupds/03-validation.md) |
 | STEST-5 | SHOULD | untested |  | **Failure paths.** With no card present, or with a codec that never becomes ready, the tool prints a message and exits nonzero without chang... | [setupds/03-validation.md](setupds/03-validation.md) |
-| INT-1 | MUST | verified |  | Respect the ownership table: on an unrecognised chipset the setup tool programs everything in its rows and leaves distributed DMA to the TSR... | [interaction/01-handover.md](interaction/01-handover.md) |
+| INT-1 | MUST | verified |  | Respect the ownership table | [interaction/01-handover.md](interaction/01-handover.md) |
 | INT-2 | MUST | verified |  | Leave the card in the state above after a silent apply with stock settings, as far as the unrecognised-chipset path is concerned | [interaction/01-handover.md](interaction/01-handover.md) |
 | INT-3 | MUST | verified |  | Do not enable distributed DMA in the setup tool on an unrecognised chipset: SMOD must be left at 3 and offset 4Ch at its previous value | [interaction/01-handover.md](interaction/01-handover.md) |
 | INT-4 | MUST | verified |  | The TSR may assume, without checking, that the interrupt routing, IMOD, the codec and the native engine are as left by the setup tool | [interaction/01-handover.md](interaction/01-handover.md) |
 | INT-5 | MAY | inferred |  | A TSR may leave the card's mixers and the interrupt configuration alone | [interaction/01-handover.md](interaction/01-handover.md) |
 | INT-6 | MUST | verified |  | The boot batch file runs the setup tool with its silent-apply switch and then branches on the exit code: 2 means "load the TSR"; anything el... | [interaction/01-handover.md](interaction/01-handover.md) |
-| INT-7 | MUST | verified |  | Exit code **1**: the Sound Blaster DSP was not found or the interrupt test failed (self-test result bits 0 or 1) | [interaction/01-handover.md](interaction/01-handover.md) |
-| INT-8 | MUST | verified |  | The TSR is wanted when the chipset is unrecognised and the settings request it (stock: yes) | [interaction/01-handover.md](interaction/01-handover.md) |
-| INT-9 | SHOULD | inferred |  | On a recognised chipset the exit code is expected to be 0 and no TSR is loaded | [interaction/01-handover.md](interaction/01-handover.md) |
-| INT-10 | MUST | verified |  | The setup tool reads the settings file; the TSR does not | [interaction/01-handover.md](interaction/01-handover.md) |
-| INT-11 | MAY | inferred |  | Because of `INT-10`, a user who chooses a non-default Sound Blaster base, interrupt or DMA channel in the setup tool gets the defaults writt... | [interaction/01-handover.md](interaction/01-handover.md) |
-| INT-12 | MAY | untested |  | Carry the user's choices to the TSR (a command line, reading the card, or sharing the file) | [interaction/01-handover.md](interaction/01-handover.md) |
-| INT-13 | MUST | verified |  | The file is ASCII text, one setting per line, written `KEY=VALUE` with no spaces in the stock file, and lines end in carriage return and lin... | [interaction/02-settings-file.md](interaction/02-settings-file.md) |
-| INT-14 | MUST | verified |  | A key that is absent from the file reads as 0 | [interaction/02-settings-file.md](interaction/02-settings-file.md) |
-| INT-15 | SHOULD | inferred |  | Keys are matched by name, not by their position in the file | [interaction/02-settings-file.md](interaction/02-settings-file.md) |
-| INT-16 | SHOULD | inferred |  | The mixer values are hexadecimal: the stock value 77 for the legacy mixer keys becomes the data byte FFh only if it is read as 77h | [interaction/02-settings-file.md](interaction/02-settings-file.md) |
-| INT-17 | MAY | inferred |  | The interactive mode of the setup tool writes this file, and the silent apply reads it back ("apply the saved settings") | [interaction/02-settings-file.md](interaction/02-settings-file.md) |
-| INT-18 | MAY | untested |  | A replacement setup tool may define a different settings format, or read this one | [interaction/02-settings-file.md](interaction/02-settings-file.md) |
+| INT-7 | MUST | verified |  | The exit code is: **1** if the Sound Blaster DSP was not found or the interrupt test failed (self-test result bits 0 or 1); otherwise **2** ... | [interaction/01-handover.md](interaction/01-handover.md) |
+| INT-8 | MUST | untested |  | A failure of the setup tool before the self-test (no card found, codec never ready, BAR0 cannot be assigned) must exit with a nonzero code o... | [interaction/01-handover.md](interaction/01-handover.md) |
+| INT-9 | MUST | verified |  | `FORCETSR` is true when the settings file sets it, or when the chipset is unrecognised and `LOADTSR` is nonzero (stock: 1) | [interaction/01-handover.md](interaction/01-handover.md) |
+| INT-10 | SHOULD | inferred |  | On a recognised chipset the exit code is expected to be 0 and no TSR is loaded | [interaction/01-handover.md](interaction/01-handover.md) |
+| INT-11 | MUST | verified |  | The setup tool reads the settings file; the TSR does not | [interaction/01-handover.md](interaction/01-handover.md) |
+| INT-12 | MAY | inferred |  | Because of `INT-11`, a Sound Blaster base other than 220h chosen in the setup tool is overwritten, since the TSR writes the base field and t... | [interaction/01-handover.md](interaction/01-handover.md) |
+| INT-13 | MAY | untested |  | Carry the user's choices to the TSR (a command line, reading the card, or sharing the file) | [interaction/01-handover.md](interaction/01-handover.md) |
+| INT-14 | MUST | verified |  | The file is ASCII text, one setting per line, written `KEY=VALUE` with no spaces in the stock file, and lines end in carriage return and lin... | [interaction/02-settings-file.md](interaction/02-settings-file.md) |
+| INT-15 | MUST | verified |  | A key that is absent from the file reads as 0 | [interaction/02-settings-file.md](interaction/02-settings-file.md) |
+| INT-16 | SHOULD | inferred |  | Keys are matched by name, not by their position in the file | [interaction/02-settings-file.md](interaction/02-settings-file.md) |
+| INT-17 | SHOULD | inferred |  | The mixer values are hexadecimal: the stock value 77 for the legacy mixer keys becomes the data byte FFh only if it is read as 77h | [interaction/02-settings-file.md](interaction/02-settings-file.md) |
+| INT-18 | MAY | inferred |  | The interactive mode of the setup tool writes this file, and the silent apply reads it back ("apply the saved settings") | [interaction/02-settings-file.md](interaction/02-settings-file.md) |
+| INT-19 | MAY | untested |  | A replacement setup tool may define a different settings format, or read this one | [interaction/02-settings-file.md](interaction/02-settings-file.md) |
 | ITEST-1 | SHOULD | verified |  | **Hand-over state.** After the setup tool's silent apply with stock settings, the registers of the table in 1.2 hold the listed values | [interaction/03-validation.md](interaction/03-validation.md) |
 | ITEST-2 | SHOULD | verified |  | **Exit code.** With stock settings on that machine the silent apply exits with 2, and the boot batch file proceeds to the TSR branch | [interaction/03-validation.md](interaction/03-validation.md) |
 | ITEST-3 | MUST | inferred |  | **TSR after setup.** After the TSR loads, the high word of the dword at offset 40h is 9000h (SMOD = 10b, IMOD = 1 preserved) and offset 4Ch ... | [interaction/03-validation.md](interaction/03-validation.md) |

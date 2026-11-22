@@ -4,10 +4,10 @@ The setup tool takes its settings from a plain text file. A replacement setup to
 
 ## 2.1 Grammar
 
-- **INT-13** `MUST` `verified` - The file is ASCII text, one setting per line, written `KEY=VALUE` with no spaces in the stock file, and lines end in carriage return and line feed. The stock file is 353 bytes and not obfuscated.
-- **INT-14** `MUST` `verified` - A key that is absent from the file reads as 0. The force-TSR key (below) is absent from the stock file and reads as 0.
-- **INT-15** `SHOULD` `inferred` - Keys are matched by name, not by their position in the file. The setup tool looks the keys up in a fixed order, and the stock file lists them in a different order, so position does not appear to matter. Unrecognised keys and malformed lines were not tested.
-- **INT-16** `SHOULD` `inferred` - The mixer values are hexadecimal: the stock value 77 for the legacy mixer keys becomes the data byte FFh only if it is read as 77h. The radix of the selector keys is not distinguishable in the stock file, where every selector is a single digit.
+- **INT-14** `MUST` `verified` - The file is ASCII text, one setting per line, written `KEY=VALUE` with no spaces in the stock file, and lines end in carriage return and line feed. The stock file is 353 bytes and not obfuscated.
+- **INT-15** `MUST` `verified` - A key that is absent from the file reads as 0. The force-TSR key (below) is absent from the stock file and reads as 0.
+- **INT-16** `SHOULD` `inferred` - Keys are matched by name, not by their position in the file. The stock file's order is not a lookup order, so position does not appear to matter. Unrecognised keys and malformed lines were not tested.
+- **INT-17** `SHOULD` `inferred` - The mixer values are hexadecimal: the stock value 77 for the legacy mixer keys becomes the data byte FFh only if it is read as 77h. The radix of the selector keys is not distinguishable in the stock file, where every selector is a single digit.
 
 ## 2.2 Keys
 
@@ -24,7 +24,7 @@ All keys were read from the original. "Stock" is the value in the vendor's defau
 | `MPUIRQ` | 0 | MPU-401 interrupt selector |
 | `JOYIO` | 0 | Joystick base selector |
 | `INTAIRQ` | 5 | The interrupt number to route PCI INTA# to |
-| `IRQMODE` | 1 | How the card signals interrupts: 0 legacy ISA lines, 1 PCI INTA#, 2 serialised IRQ. For 0 and 2 on an unrecognised chipset the interrupt fields are filled with 7 (reserved) |
+| `IRQMODE` | 1 | How the card signals interrupts: 0 legacy ISA lines, 1 PCI INTA# (sets IMOD, 42h bit 15), 2 serialised IRQ (sets SIEN, 40h bit 14). On an unrecognised chipset both interrupt fields come out as 7 (reserved) for every mode: read directly for 0 and 2, and matching the stock result for 1 |
 | `DMAMODE` | 0 | 0 = PC/PCI DMA, 1 = distributed DMA. Acted on only for a recognised chipset |
 | `LOADTSR` | 1 | Request the TSR when the chipset is unrecognised |
 | `FORCETSR` | absent | Set by the tool when the chipset is unrecognised and `LOADTSR` is nonzero; may also be set in the file |
@@ -35,8 +35,8 @@ All keys were read from the original. "Stock" is the value in the vendor's defau
 | `MIC` | 8008 | AC'97 microphone word, masked with 805Fh |
 | `LINE`, `CD`, `VIDEO`, `AUX` | 8808 each | AC'97 words, masked with 9F1Fh |
 | `PCM` | 808 | AC'97 PCM word, masked with 9F1Fh |
-| `SBFILE`, `NAFILE`, `FMFILE` | YMH8.WAV, YMH16.WAV, YMH.MID | File names for the interactive sound test (not on the silent path) |
+| `SBFILE`, `NAFILE`, `FMFILE` | file names | Sound files for the interactive sound test (not on the silent path) |
 | `FIRSTTRY`, `IRQSHARE`, `PIRQRC`, `DEBUG`, `REPEAT` | 1, 0, 0, absent, absent | Read by the tool. Their meaning was not established |
 
-- **INT-17** `MAY` `inferred` - The interactive mode of the setup tool writes this file, and the silent apply reads it back ("apply the saved settings"). Not confirmed, because the interactive mode was not traced.
-- **INT-18** `MAY` `untested` - A replacement setup tool may define a different settings format, or read this one. See `IDEC-1`.
+- **INT-18** `MAY` `inferred` - The interactive mode of the setup tool writes this file, and the silent apply reads it back ("apply the saved settings"). Not confirmed, because the interactive mode was not traced.
+- **INT-19** `MAY` `untested` - A replacement setup tool may define a different settings format, or read this one. See `IDEC-1`.

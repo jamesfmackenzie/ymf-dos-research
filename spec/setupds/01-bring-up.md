@@ -10,7 +10,7 @@ What the silent apply does to the card, in order. Register names are from the YM
 
 - **SDS-2** `MUST` `verified` - Find the card through the PCI BIOS (INT 1Ah, AX=B102h) by vendor and device ID. Only device ID 000Dh has been run.
 - **SDS-3** `MUST` `verified` - If BAR0 (offset 10h) is zero, assign it: save the command register (offset 04h), clear its low three bits (I/O space, memory space, bus master), size the BAR with an all-ones write and read-back, write a base address, and restore the command register. If BAR0 is already assigned, leave it alone. On the reference machine it was already assigned, so this path was not exercised on hardware.
-- **SDS-4** `MUST` `verified` - Set the command register's memory-space and bus-master bits (04h |= 06h) for the duration of the setup, remembering the old value, and restore the old value at tear-down (`SDS-28`).
+- **SDS-4** `MUST` `verified` - Set the command register's memory-space and bus-master bits (04h |= 06h), remembering the value it held when this step runs (the value left after `SDS-3`), and restore that value at tear-down (`SDS-28`). If the BIOS left bus master off, the restored value leaves it off, and distributed DMA will not work; the interaction specification says both bits must be on at the hand-over.
 
 ## 1.3 Interrupt routing
 
@@ -21,7 +21,7 @@ What the silent apply does to the card, in order. Register names are from the YM
 ## 1.4 Power-up
 
 - **SDS-8** `MUST` `verified` `DS-Y` - Read the Power Control register (offset 4Ah). **Only if it is not zero**, clear its bits in stages with a delay between stages: bit 0 (DMC); then bits 2:0 (DPLL1, DPLL0); then bits 5:0 (PSN, PSL1, PSL0). Then, if bit 13 (PR5) is clear, clear bit 12 (PR4, the AC-link) together with bits 5:0, wait, and clear bits 15:8; if PR5 is set, set bit 2 of the DS-1 Control register (offset 48h), wait, then clear bits 15:8. Bits 7:6 are always preserved. The datasheet's power-on default is 0000h, so on a cold boot this step does nothing.
-- **SDS-9** `MUST` `verified` - Do not write offset 4Eh on a YMF724F. The original writes 4Eh = 0 during power-up only on parts whose stored identification value (compared with 10h, 12h and 20h) matches, and the YMF724F (device 000Dh, revision 03h) matches none of them. The identification value is most likely the PCI device ID, which is inferred; that the YMF724F skips the branch is verified.
+- **SDS-9** `MUST` `verified` - Do not write offset 4Eh on a YMF724F. The original writes 4Eh = 0 during power-up only on parts whose stored identification value is one of a small set of values, and the YMF724F (device 000Dh, revision 03h) matches none of them. The identification value is most likely the PCI device ID, which is inferred; that the YMF724F skips the branch is verified.
 
 ## 1.5 Native engine quiesce
 

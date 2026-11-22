@@ -25,7 +25,7 @@ The original's results were obtained in DOSBox-X running FreeDOS 1.3 with Jemm 5
 
 ## 6.3 Checks that need hardware or real software
 
-- **TEST-9** `MUST` `untested` - **Real games on real hardware.** Doom and Duke Nukem 3D (DOS/4GW and its relatives, and Watcom-based extenders) start, reach their menu or demo, play audible sound effects and music and exit to DOS without a hang, on a machine whose chipset has no D-DMA, under the TSR. The original's own results on this are recorded as inconclusive.
+- **TEST-9** `MUST` `untested` - **Real games on real hardware.** Doom and Duke Nukem 3D (DOS/4GW and its relatives, and Watcom-based extenders) start, reach their menu or demo, play audible sound effects and music and exit to DOS without a hang, on a machine whose chipset has no D-DMA, under the TSR. No result for the original is established.
 - **TEST-10** `SHOULD` `untested` - **The warm-up symptom.** The reference machine is the one on which the original showed an unreliable first DMA after load: a Supermicro X10SAE with a YMF724F, where Doom hangs at the end of its demo loop after a cold boot and does not if Duke Nukem 3D was run first. The symptom may be intermittent, so repeat each configuration enough times to tell (for example ten cold boots each). Compare the original, a replacement that writes the slave's Master Clear at install (`LIFE-12`), and a replacement that does not. The result is evidence for `DEC-1`.
 - **TEST-11** `SHOULD` `untested` - **Other memory managers.** Repeat `TEST-1` to `TEST-7` under EMM386 and QEMM (`TRAP-12`).
 - **TEST-12** `SHOULD` `untested` - **Other extenders.** Run a program built with Causeway and with an extender that wants DPMI 1.0 (`DPMI-10`).

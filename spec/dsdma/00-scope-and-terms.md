@@ -28,7 +28,7 @@ slave registers, and leave every other DMA channel alone.**
 | Component | Role |
 |---|---|
 | Game / Sound Blaster driver | Programs the DMA controller (ports 00-0F, 81-8B, C0-DE) and the Sound Blaster at its I/O base |
-| Card setup tool (the `setupds/` specification) | Configures the card (legacy audio block, interrupts, power), runs a self-test, and exits with code 2 on a chipset it does not recognise so that the boot batch file loads the TSR. Who owns which part of the card is in the `interaction/` specification |
+| Card setup tool | Configures the card (legacy audio block, interrupts, power), runs a self-test, and exits with code 2 on a chipset it does not recognise so that the boot batch file loads the TSR. Who owns which part of the card is in the `interaction/` specification |
 | **The TSR** (this specification) | Switches the card to D-DMA mode, enables the slave, then intercepts the DMA port accesses and forwards them to the slave |
 | Memory manager (EMM386, Jemm, QEMM) | Provides V86 mode, extended memory and (in the original design) VCPI |
 | Card | Implements the slave registers, the Sound Blaster block and bus-master data movement |
