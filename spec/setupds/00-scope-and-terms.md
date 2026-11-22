@@ -4,7 +4,7 @@
 
 This is a specification for a replacement of the **card setup tool**: the DOS program that brings a Yamaha YMF724-family sound card from its power-on state to a working Sound Blaster-compatible state, and that decides whether a separate DMA master program has to be loaded afterwards. In the vendor's package it is `setupds.exe`.
 
-It describes one mode of the original: the **silent apply** mode (the `/s` command-line switch), on one card: a **YMF724F** with the vendor's stock settings. A replacement that does this and leaves the card in the state described here can be used in place of the original, with the vendor's DMA master program or with a replacement for it (see the `interaction/` specification).
+It describes one mode of the original: the **silent apply** mode (the `/s` command-line switch), on one card: a **YMF724F** with the vendor's stock settings. A replacement that does this and leaves the card in the state described here can be used in place of the original. It conforms if it implements the unrecognised-chipset path and treats every chipset as unrecognised, with the vendor's DMA master program or with a replacement for it (see the `interaction/` specification).
 
 ## 0.2 What is covered, and what is not
 
@@ -16,6 +16,7 @@ Covered:
 
 **Not covered.** These parts of the original have not been captured, and a replacement cannot be built from this specification for them:
 - the **interactive mode** (no switch): its menus, volume screens and sound test. It was not traced;
+- **settings other than the stock values.** The encodings of the Sound Blaster, MPU-401, FM and joystick base fields, of the Sound Blaster and MPU interrupt fields and of the DMA channel field are not captured for non-stock selections. Only the stock selections are specified;
 - cards other than a YMF724F. The original has branches for other family members (YMF744, YMF754 and the revisions with extra I/O-base registers). They were read but never run, and are described only where they affect what the YMF724F path does not do;
 - the programming of **host chipsets that already provide distributed DMA or PC/PCI DMA**. The original recognises a list of chipsets and programs them; on any other chipset it takes the path described here. Which chipsets it recognises is listed in section 4.2 as an open question, not specified;
 - a secondary AC'97 codec;

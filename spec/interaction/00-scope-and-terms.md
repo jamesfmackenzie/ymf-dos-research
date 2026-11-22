@@ -9,11 +9,11 @@ Two vendor programs bring a Yamaha YMF724-family card up for DOS on a machine wh
 
 A boot batch file (`LOADTSR.BAT`) runs the first and, on exit code 2, the second.
 
-This specification defines **how the two interact**: who owns which part of the card's state, what state exists at the hand-over, what the exit codes mean, and the grammar of the settings file the setup tool reads. It is the contract that lets either program be replaced independently: a new setup tool that honours it works with the vendor's TSR or a new one, and the other way round. The `setupds/` and `dsdma/` specifications each define one side; this one defines the boundary and refers to neither of them.
+This specification defines **how the two interact**: who owns which part of the card's state, what state exists at the hand-over, what the exit codes mean, and the grammar of the settings file the setup tool reads. It is the contract that lets either program be replaced independently: a new setup tool that honours it works with the vendor's TSR or a new one, and the other way round. Two other specifications each define one side; this one defines the boundary and refers to neither of them.
 
 ## 0.2 Not covered
 
-- The interactive mode of the setup tool (see the `setupds/` specification).
+- The interactive mode of the setup tool.
 - Chipsets the setup tool recognises and programs itself; on those it exits 0 and no TSR is needed. Only the unrecognised-chipset path is specified.
 - How a TSR gets its settings other than the defaults (a decision, `IDEC-1`).
 

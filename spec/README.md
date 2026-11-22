@@ -49,8 +49,7 @@ Each requirement is one line:
 
 ## Provenance
 
-The authors of these specifications had read the original programs; that is the reason for the rules above. The history of
-this folder is the record of what an implementer was given.
+The authors of these specifications had read the original programs; that is the reason for the rules above.
 
 ## References you may use
 

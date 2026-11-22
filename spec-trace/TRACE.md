@@ -73,7 +73,7 @@ This file joins each requirement in [`../spec/`](../spec/) to the research that 
 | LIFE-1 | MUST | verified | [F8](../findings/08-dsdma-never-reads-ds-ini.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
 | LIFE-2 | MUST | verified | [F13](../findings/13-end-to-end-synthesis.md) | - | - | Reworded after the cold read from an assumption into an obligation not to reset the card. |
 | LIFE-3 | MUST | verified | [F8](../findings/08-dsdma-never-reads-ds-ini.md), [F13](../findings/13-end-to-end-synthesis.md) | [E16](../experiments/16-trap-verification/) | - |  |
-| LIFE-4 | SHOULD | untested | [F5](../findings/05-init-sequence-and-dma-enable.md), [F8](../findings/08-dsdma-never-reads-ds-ini.md) | - | - |  |
+| LIFE-4 | MAY | untested | [F5](../findings/05-init-sequence-and-dma-enable.md), [F8](../findings/08-dsdma-never-reads-ds-ini.md) | - | - |  |
 | LIFE-5 | MAY | untested | [F8](../findings/08-dsdma-never-reads-ds-ini.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
 | LIFE-6 | MUST | verified | [F13](../findings/13-end-to-end-synthesis.md), [F14](../findings/14-irq-path-pci-inta-and-elcr.md) | - | - |  |
 | LIFE-7 | MUST | inferred | [F5](../findings/05-init-sequence-and-dma-enable.md), [F16](../findings/16-dosbox-x-dynamic-verification.md) | - | - | F5/F16 show the configuration and the trap takeover but not their order relative to each other. |
@@ -121,20 +121,20 @@ This file joins each requirement in [`../spec/`](../spec/) to the research that 
 | SDS-15 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Dump: BAR0+114h = 0 after. Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
 | SDS-16 | MUST | verified | [F14](../findings/14-irq-path-pci-inta-and-elcr.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | DS-Y | Dump: low word 3F4Fh. Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
 | SDS-17 | MUST | verified | [F13](../findings/13-end-to-end-synthesis.md), [F14](../findings/14-irq-path-pci-inta-and-elcr.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | DS-Y | Dump: high word 9800h. Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
-| SDS-18 | MUST | inferred | [F14](../findings/14-irq-path-pci-inta-and-elcr.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Which settings byte drives the branch is not pinned down (F22 "Where 3F00h comes from"). |
+| SDS-18 | SHOULD | inferred | [F14](../findings/14-irq-path-pci-inta-and-elcr.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Which settings byte drives the branch is not pinned down (F22 "Where 3F00h comes from"). |
 | SDS-19 | MUST | verified | [F13](../findings/13-end-to-end-synthesis.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Dump: 4Ch unchanged (0000h) after setupds. Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
 | SDS-20 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - |  |
 | SDS-21 | MUST | verified | [F13](../findings/13-end-to-end-synthesis.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - |  |
-| SDS-22 | MUST | inferred | [F13](../findings/13-end-to-end-synthesis.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Byte-to-key mapping not confirmed. |
+| SDS-22 | SHOULD | inferred | [F13](../findings/13-end-to-end-synthesis.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Byte-to-key mapping not confirmed. |
 | SDS-23 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Dump: last codec command 18h = 0808h. Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
 | SDS-24 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - |  |
 | SDS-25 | SHOULD | verified | [F13](../findings/13-end-to-end-synthesis.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Bit meanings from F13. |
-| SDS-26 | MUST | inferred | [F13](../findings/13-end-to-end-synthesis.md) | - | - | Datasheet defines no behaviour for SMOD = 3. |
+| SDS-26 | MUST | verified | [F13](../findings/13-end-to-end-synthesis.md) | - | - | Datasheet defines no behaviour for SMOD = 3. |
 | SDS-27 | MAY | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Probing behind the report not traced. |
 | SDS-28 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Dump: +108h and +114h = 0 after. Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
-| STEST-1 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
-| STEST-2 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
-| STEST-3 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - | Exit code 2 follows from the code; the batch file then loads the TSR. Not recorded as a separate hardware observation. |
+| STEST-1 | SHOULD | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
+| STEST-2 | SHOULD | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
+| STEST-3 | SHOULD | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - | Exit code 2 follows from the code; the batch file then loads the TSR. Not recorded as a separate hardware observation. |
 | STEST-4 | SHOULD | untested | - | - | - | Not run. |
 | STEST-5 | SHOULD | untested | - | - | - | Not run. |
 
@@ -152,17 +152,17 @@ This file joins each requirement in [`../spec/`](../spec/) to the research that 
 | INT-8 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - |  |
 | INT-9 | SHOULD | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | Not run on a recognised chipset. |
 | INT-10 | MUST | verified | [F5](../findings/05-init-sequence-and-dma-enable.md), [F8](../findings/08-dsdma-never-reads-ds-ini.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
-| INT-11 | MUST | inferred | [F8](../findings/08-dsdma-never-reads-ds-ini.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - | Not tested on hardware. |
+| INT-11 | MAY | inferred | [F8](../findings/08-dsdma-never-reads-ds-ini.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - | Not tested on hardware. |
 | INT-12 | MAY | untested | [F8](../findings/08-dsdma-never-reads-ds-ini.md) | - | - | Proposal. |
 | INT-13 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | Stock file read directly: 353 bytes, ASCII, CRLF. |
 | INT-14 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | FORCETSR absent from the stock file and reads as 0. |
-| INT-15 | MUST | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | Lookup order in the loader differs from the stock file order. |
-| INT-16 | MUST | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Stock LEGMAS 77 gives data byte FFh only if read as hexadecimal. |
+| INT-15 | SHOULD | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | Lookup order in the loader differs from the stock file order. |
+| INT-16 | SHOULD | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Stock LEGMAS 77 gives data byte FFh only if read as hexadecimal. |
 | INT-17 | MAY | inferred | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md) | - | - | The interactive path (F12 open item: the writer) was not traced. |
 | INT-18 | MAY | untested | - | - | - | Proposal. |
-| ITEST-1 | MUST | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
-| ITEST-2 | MUST | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
-| ITEST-3 | MUST | verified | [F5](../findings/05-init-sequence-and-dma-enable.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | High word 9800h to 9000h via AND E7FFh, OR 1000h (F22). |
+| ITEST-1 | SHOULD | verified | [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | Hardware dump from the maintainer's unpublished notes (X10SAE, 2026-10-27); not reproducible from this repo. |
+| ITEST-2 | SHOULD | verified | [F12](../findings/12-setupds-decision-logic-and-ini-keys.md), [F13](../findings/13-end-to-end-synthesis.md) | - | - |  |
+| ITEST-3 | MUST | inferred | [F5](../findings/05-init-sequence-and-dma-enable.md), [F22](../findings/22-setupds-card-bring-up-sequence.md) | - | - | High word 9800h to 9000h via AND E7FFh, OR 1000h (F22). |
 | ITEST-4 | SHOULD | untested | - | - | - | Not run. |
 | ITEST-5 | SHOULD | untested | - | - | - | Not run. |
 

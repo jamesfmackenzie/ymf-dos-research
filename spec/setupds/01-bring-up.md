@@ -4,7 +4,7 @@ What the silent apply does to the card, in order. Register names are from the YM
 
 ## 1.1 Order
 
-- **SDS-1** `SHOULD` `verified` - Perform the steps of sections 1.2 to 1.6 and chapter 2 in this order: card search; BAR0 assignment; interrupt routing; power-up; native engine quiesce; AC-link reset and codec wait; (optional) microcode download; start of the native engine; legacy configuration (chapter 2); mixers; self-test; status report; tear-down. This is the order the original uses. Which steps depend on an earlier one was not established, so a replacement may reorder only what it can show to be independent.
+- **SDS-1** `SHOULD` `verified` - Perform the steps of sections 1.2 to 1.7 and chapter 2 in this order: card search; BAR0 assignment; interrupt routing; power-up; native engine quiesce; AC-link reset and codec wait; (optional) microcode download; start of the native engine; legacy configuration (chapter 2); mixers; self-test; status report; tear-down. This is the order the original uses. Which steps depend on an earlier one was not established, so a replacement may reorder only what it can show to be independent. Two orderings are firm (`MUST`): the legacy dword is written after the codec wait and before the mixers and the self-test (`SDS-20`), and the tear-down comes last (`SDS-28`).
 
 ## 1.2 Finding the card and its register window
 
@@ -14,7 +14,7 @@ What the silent apply does to the card, in order. Register names are from the YM
 
 ## 1.3 Interrupt routing
 
-- **SDS-5** `MUST` `verified` - Route the card's INTA# line to the interrupt number from the settings (stock: 5) with the PCI BIOS call "set PCI hardware interrupt" (INT 1Ah, AX=B10Fh), and make the card's Interrupt Line register (offset 3Ch) read that number.
+- **SDS-5** `MUST` `verified` - Route the card's INTA# line to the PCI interrupt number given by the settings (the interaction specification's key table names it; stock: 5) with the PCI BIOS call "set PCI hardware interrupt" (INT 1Ah, AX=B10Fh), and make the card's Interrupt Line register (offset 3Ch) read that number.
 - **SDS-6** `MUST` `verified` - Make that interrupt level-triggered in the PC's edge/level control registers (ports 4D0h and 4D1h) by read-modify-write of the bit for the interrupt number, leaving the other bits as they were. On the reference machine the bit was already set by the BIOS, so the register was unchanged (20h before and after).
 - **SDS-7** `MAY` `inferred` - Scan for free interrupts. The original does this before power-up; its purpose was not traced and nothing later was seen to depend on it.
 

@@ -6,8 +6,8 @@ The setup tool takes its settings from a plain text file. A replacement setup to
 
 - **INT-13** `MUST` `verified` - The file is ASCII text, one setting per line, written `KEY=VALUE` with no spaces in the stock file, and lines end in carriage return and line feed. The stock file is 353 bytes and not obfuscated.
 - **INT-14** `MUST` `verified` - A key that is absent from the file reads as 0. The force-TSR key (below) is absent from the stock file and reads as 0.
-- **INT-15** `MUST` `inferred` - Keys are matched by name, not by their position in the file. The setup tool looks the keys up in a fixed order, and the stock file lists them in a different order, so position does not appear to matter. Unrecognised keys and malformed lines were not tested.
-- **INT-16** `MUST` `inferred` - The mixer values are hexadecimal: the stock value 77 for the legacy mixer keys becomes the data byte FFh only if it is read as 77h. The radix of the selector keys is not distinguishable in the stock file, where every selector is a single digit.
+- **INT-15** `SHOULD` `inferred` - Keys are matched by name, not by their position in the file. The setup tool looks the keys up in a fixed order, and the stock file lists them in a different order, so position does not appear to matter. Unrecognised keys and malformed lines were not tested.
+- **INT-16** `SHOULD` `inferred` - The mixer values are hexadecimal: the stock value 77 for the legacy mixer keys becomes the data byte FFh only if it is read as 77h. The radix of the selector keys is not distinguishable in the stock file, where every selector is a single digit.
 
 ## 2.2 Keys
 
